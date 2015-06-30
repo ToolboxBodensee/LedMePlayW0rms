@@ -113,29 +113,7 @@ int audio = 2;
 #define NOTE_D8  4699
 #define NOTE_DS8 4978
 
-// Joystick 1
-int buttonU1 = 30;
-int buttonD1 = 32;
-int buttonL1 = 34;
-int buttonR1 = 36;
-int buttonFire1 = 38;
-
-// Joystick 2 (2 player mode not supported)
-int buttonU2 = 31;
-int buttonD2 = 33;
-int buttonL2 = 35;
-int buttonR2 = 37;
-int buttonFire2 = 39;
-
-// Other buttons
-int buttonReset = 42;
-int buttonPause = 43;
-
-// Variables
-
-
-
-void setup() 
+void setup()
 {
   // Initialize serial connection
   Serial.begin(9600);
@@ -144,24 +122,7 @@ void setup()
   randomSeed(analogRead(40));
 
   // Initialize joystick buttons
-  pinMode(buttonL1,         INPUT);     
-  pinMode(buttonR1,         INPUT);     
-  pinMode(buttonU1,         INPUT);     
-  pinMode(buttonD1,         INPUT);     
-  pinMode(buttonFire1,      INPUT);     
-  pinMode(buttonFire2,      INPUT);     
-  pinMode(buttonReset,      INPUT);     
-  pinMode(buttonPause,      INPUT);    
-
-  // Activate internal pull-up resistors 
-  digitalWrite(buttonL1,    HIGH);
-  digitalWrite(buttonR1,    HIGH);
-  digitalWrite(buttonU1,    HIGH);
-  digitalWrite(buttonD1,    HIGH);
-  digitalWrite(buttonFire1, HIGH);
-  digitalWrite(buttonFire2, HIGH);
-  digitalWrite(buttonReset, HIGH);
-  digitalWrite(buttonPause, HIGH);
+  initButtons();
 
   // Initialize matrix and define text mode
   matrix.begin();
@@ -178,40 +139,49 @@ void setup()
 // Main loop
 void loop()
 {
-    matrix.drawLine(5, 20, 8, 17, matrix.Color333(1,1,4));
-    
-    matrix.drawPixel(7, 2, matrix.Color333(0, 255, 0));
+  matrix.drawLine(5, 20, 8, 17, matrix.Color333(1, 1, 4));
+
   
-    do
-    { 
-      
-        gameLoop();
-      
-    }
-    while(true);
+  do
+  {
+
+    gameLoop();
+
+  }
+  while (true);
 }
-
-
 
 void gameLoop()
 {
-    unsigned long engineLoopStartPoint;
-   
-    do
+  unsigned long engineLoopStartPoint;
+ int x = 0;
+  do
+  {
+    engineLoopStartPoint = millis();
     {
-        engineLoopStartPoint = millis();
-        {
-    
-        }
-        synchronizeFrames(engineLoopStartPoint);
+
+     
+
+      if (buttonPlayer1Fire1Pressed())
+      {
+        matrix.drawPixel(x, x, matrix.Color333(0, 0, 0));
+        x++;
+    if (x > 32) x = 0;        
+        matrix.drawPixel(x, x, matrix.Color333(0, 255, 0));
+
+      };
+
+
     }
-    while(true);
+    synchronizeFrames(engineLoopStartPoint);
+  }
+  while (true);
 }
 
 void synchronizeFrames (unsigned long engineLoopStartPoint)
 {
-    do
-    {
-    }
-    while(abs(millis() - engineLoopStartPoint) < 20);
+  do
+  {
+  }
+  while (abs(millis() - engineLoopStartPoint) < 20);
 }
