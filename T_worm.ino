@@ -111,9 +111,9 @@ void Worm::moveDown()
 {
     ++y;
        
-    if (y > 32)
+    if (y > 31)
     {
-        y = 32;
+        y = 31;
         alive = false;
     }
     else
@@ -141,9 +141,9 @@ void Worm::moveRight()
 {
     ++x;
        
-    if (x > 32)
+    if (x > 31)
     {
-        x = 32;
+        x = 31;
         alive = false;
     }
     else
