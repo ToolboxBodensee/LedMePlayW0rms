@@ -4,6 +4,8 @@
 // by Thomas Kekeisen
 //
 
+#include <stdlib.h>
+
 // Include libraries for adafruit matrix
 #include <Adafruit_GFX.h>   // Core graphics library
 #include <RGBmatrixPanel.h> // Hardware-specific library
@@ -102,6 +104,22 @@ void drawLine (int startX, int startY, int endX, int endY, unsigned int color)
 void drawPixel (int x, int y, unsigned int color)
 {
     matrix.drawPixel(x, y, color);
+}
+
+unsigned int randomColor ()
+{
+    int index = rand() % 3;
+    
+    if (index == 0)
+    {
+        return COLOR_RED;
+    }
+    else if (index == 1)
+    {
+        return COLOR_BLUE;
+    }
+     
+    return COLOR_GREEN;   
 }
 
 // Main loop

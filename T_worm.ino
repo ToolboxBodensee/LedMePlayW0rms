@@ -14,6 +14,7 @@ class Worm
  
     public:
         Worm();
+        void changeColor();
         void draw();
         boolean isAlive();
         void moved();
@@ -67,12 +68,17 @@ void Worm::addPosition (Point point, boolean grow)
     
        
     Point queueStart = queue[queueLength - 1];
-    _P_GREEN(queueStart.x, queueStart.y);
+    _P(queueStart.x, queueStart.y, color);
     
  
     //queue[queueLength] = point;
 
     //++queueLength;
+}
+
+void Worm::changeColor ()
+{
+     color = randomColor();   
 }
 
 void Worm::draw ()

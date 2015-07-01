@@ -20,23 +20,24 @@ void gameLoop()
             
             if (buttonPlayer1RightPressed())
             {
-                
                 player1->moveRight();    
             }
-            
-            if (buttonPlayer1LeftPressed())
+            else if (buttonPlayer1LeftPressed())
             {
                 player1->moveLeft();
             }
-            
-            if (buttonPlayer1DownPressed())
+            else if (buttonPlayer1DownPressed())
             {
                 player1->moveDown();
             }
-            
-            if (buttonPlayer1UpPressed())
+            else if (buttonPlayer1UpPressed())
             {
                 player1->moveUp();
+            }
+           
+            if (buttonPlayer1Fire1Pressed())
+            {
+                player1->changeColor();
             }
             
         
