@@ -10,7 +10,7 @@ class Worm
         int          x;
         int          y;
         
-        void         addPosition(Point point);
+        void         addPosition(Point point, boolean grow);
  
     public:
         Worm();
@@ -28,24 +28,46 @@ class Worm
 Worm::Worm()
 {
     growCounter   = 0;
-    growThreshold = 20;
+    growThreshold = 10;
     queueLength   = 1;
-    x             = 20;
-    y             = 20;
-    queue[0]      = { x, y };
+    x = 31;
+    y = 31;
+    queue[0] = {31, 31};
 }
 
-void Worm::addPosition (Point point)
+void Worm::addPosition (Point point, boolean grow)
 {
-    for (int i = 0; i < queueLength - 1; ++i)
+    
+    
+   // grow = false;
+    if (!grow)
     {
-        queue[i] = queue[i + 1];
+         Point queueEnd = queue[0];
+        _OFF(queueEnd.x, queueEnd.y);
+        
+        for (int i = 0; i < queueLength - 1; ++i)
+        {
+            queue[i] = queue[i + 1];
+        }
+    
+       
+    
     }
     
-    Point queueEnd = queue[0];
-    _OFF(queueEnd.x, queueEnd.y);
+    
+    
+    if (grow)
+    {
+        queueLength++;
+        
+        dbg("Growing");
+    }
     
     queue[queueLength - 1] = point;
+    
+       
+    Point queueStart = queue[queueLength - 1];
+    _P_GREEN(queueStart.x, queueStart.y);
     
  
     //queue[queueLength] = point;
@@ -71,10 +93,7 @@ void Worm::draw ()
         
        _P_GREEN(currentPoint.x, currentPoint.y);
     }*/
-    
-    Point queueStart = queue[queueLength - 1];
-    _P_GREEN(queueStart.x, queueStart.y);
-    
+ 
     
     _P_RED(0, 0);
  
@@ -90,21 +109,16 @@ void Worm::moved()
 {
     ++growCounter;
     
-    addPosition({ x, y });
+    bool grow = false;
     
     if (growCounter >= growThreshold)
     {
+        grow = true;
         
-       // ++queueLength;
-        
-       // queue[queueLength] = { x, y };
-        
-        
+        growCounter = 0;
     }
-    else
-    {
-           
-    }
+    
+    addPosition({ x, y }, grow);
 }
 
 void Worm::moveDown()

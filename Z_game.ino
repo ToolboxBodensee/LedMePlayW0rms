@@ -14,6 +14,7 @@ void gameLoop()
     {
         engineLoopStartPoint = millis();
         {
+            dbg("Tick");
             
             
             
