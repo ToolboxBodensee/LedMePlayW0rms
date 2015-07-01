@@ -29,6 +29,10 @@ void initButtons()
     pinMode(buttonR1,         INPUT);
     pinMode(buttonU1,         INPUT);
     pinMode(buttonD1,         INPUT);
+   /* pinMode(buttonL2,         INPUT);
+    pinMode(buttonR2,         INPUT);
+    pinMode(buttonU2,         INPUT);
+    pinMode(buttonD2,         INPUT);*/
     pinMode(buttonFire1,      INPUT);
     pinMode(buttonFire2,      INPUT);
     pinMode(buttonReset,      INPUT);
@@ -39,6 +43,10 @@ void initButtons()
     digitalWrite(buttonR1,    HIGH);
     digitalWrite(buttonU1,    HIGH);
     digitalWrite(buttonD1,    HIGH);
+  //  digitalWrite(buttonL2,    HIGH);
+   // digitalWrite(buttonR2,    HIGH);
+   // digitalWrite(buttonU2,    HIGH);
+   // digitalWrite(buttonD2,    HIGH);
     digitalWrite(buttonFire1, HIGH);
     digitalWrite(buttonFire2, HIGH);
     digitalWrite(buttonReset, HIGH);
@@ -59,7 +67,7 @@ boolean buttonPlayer1Fire1Pressed ()
 
 boolean buttonPlayer1Fire2Pressed ()
 {
-    boolean result = digitalRead(buttonFire2) == LOW;
+    boolean result = digitalRead(buttonFire1) == LOW;
     
     if (result)
     {
@@ -136,6 +144,78 @@ boolean buttonPausePressed ()
     if (result)
     {
         dbg("Pause pressed");
+    }
+    
+    return result;
+}
+
+boolean buttonPlayer2Fire1Pressed ()
+{
+    boolean result = digitalRead(buttonFire2) == LOW;
+    
+    if (result)
+    {
+        dbg("Player 2 fire 1 pressed");
+    }
+    
+    return result;
+}
+
+boolean buttonPlayer2Fire2Pressed ()
+{
+    boolean result = digitalRead(buttonFire2) == LOW;
+    
+    if (result)
+    {
+        dbg("Player 2 fire 2 pressed");
+    }
+    
+    return result;
+}
+
+boolean buttonPlayer2LeftPressed ()
+{
+    boolean result = digitalRead(buttonL2) == LOW;
+    
+    if (result)
+    {
+        dbg("Player 2 left pressed");
+    }
+    
+    return result;
+}
+
+boolean buttonPlayer2RightPressed ()
+{
+    boolean result = digitalRead(buttonR2) == LOW;
+    
+    if (result)
+    {
+        dbg("Player 2 right pressed");
+    }
+    
+    return result;
+}
+
+boolean buttonPlayer2UpPressed ()
+{
+    boolean result = digitalRead(buttonU2) == LOW;
+    
+    if (result)
+    {
+        dbg("Player 2 up pressed");
+    }
+    
+    return result;
+}
+
+boolean buttonPlayer2DownPressed ()
+{
+    boolean result = digitalRead(buttonD2) == LOW;
+    
+    if (result)
+    {
+        dbg("Player 2 down pressed");
     }
     
     return result;

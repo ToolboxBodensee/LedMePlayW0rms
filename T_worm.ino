@@ -13,7 +13,7 @@ class Worm
         void         addPosition(Point point, boolean grow);
  
     public:
-        Worm();
+        Worm(unsigned int newColor);
         void changeColor();
         void draw();
         boolean isAlive();
@@ -22,12 +22,14 @@ class Worm
         void moveLeft();
         void moveRight();
         void moveUp();
+        void setColor(unsigned int newColor);
      
 
 };
 
-Worm::Worm()
+Worm::Worm(unsigned int newColor)
 {
+    color         = newColor;
     growCounter   = 0;
     growThreshold = 10;
     queueLength   = 1;
@@ -101,7 +103,7 @@ void Worm::draw ()
     }*/
  
     
-    _P_RED(0, 0);
+  //  
  
     
 }
@@ -185,4 +187,9 @@ void Worm::moveUp()
     {
         moved();
     }
+}
+
+void Worm::setColor (unsigned int newColor)
+{
+     color = newColor;   
 }

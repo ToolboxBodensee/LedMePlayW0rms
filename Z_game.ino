@@ -8,8 +8,10 @@ void gameLoop()
 {
     unsigned long engineLoopStartPoint;
     
-    Worm *player1 = new Worm();
+    Worm player1 = Worm(COLOR_RED);
     
+  //  Worm player2 = Worm(COLOR_GREEN); 
+
     do
     {
         engineLoopStartPoint = millis();
@@ -17,33 +19,56 @@ void gameLoop()
             dbg("Tick");
             
             
-            
+            //*
             if (buttonPlayer1RightPressed())
             {
-                player1->moveRight();    
+                player1.moveRight();    
             }
             else if (buttonPlayer1LeftPressed())
             {
-                player1->moveLeft();
+                player1.moveLeft();
             }
             else if (buttonPlayer1DownPressed())
             {
-                player1->moveDown();
+                player1.moveDown();
             }
             else if (buttonPlayer1UpPressed())
             {
-                player1->moveUp();
+                player1.moveUp();
             }
            
             if (buttonPlayer1Fire1Pressed())
             {
-                player1->changeColor();
+                player1.changeColor();
             }
+            //*/
+  
             
+            /*
+            if (buttonPlayer2RightPressed())
+            {
+                player2.moveRight();    
+            }
+            else if (buttonPlayer2LeftPressed())
+            {
+                player2.moveLeft();
+            }
+            else if (buttonPlayer2DownPressed())
+            {
+                player2.moveDown();
+            }
+            else if (buttonPlayer2UpPressed())
+            {
+                player2.moveUp();
+            }
+           
+            if (buttonPlayer2Fire1Pressed())
+            {
+                player2.changeColor();
+            }
+            //*/
         
-            
-            player1->draw();
-            
+          _P_RED(0, 0);
             
             
             
