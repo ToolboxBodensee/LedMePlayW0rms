@@ -64,6 +64,11 @@ void _L_RED (int startX, int startY, int endX, int endY)
     drawLine(startX, startY, endX, endY, COLOR_RED);
 }
 
+void _OFF (int x, int y)
+{
+    drawPixel(x, y, COLOR_BLACK);
+}
+
 void _P (int x, int y, unsigned int color)
 {
     drawPixel(x, y, color);
@@ -82,6 +87,11 @@ void _P_GREEN (int x, int y)
 void _P_RED (int x, int y)
 {
     drawPixel(x, y, COLOR_RED);
+}
+
+void clearMatrix ()
+{
+     matrix.fillScreen(COLOR_BLACK);  
 }
 
 void drawLine (int startX, int startY, int endX, int endY, unsigned int color)

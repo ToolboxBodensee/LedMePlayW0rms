@@ -90,8 +90,8 @@ matrix.drawPixel(x, y, matrix.Color333(0, 0, 0));
     
 
 
-    }
-    synchronizeFrames(engineLoopStartPoint);
+      }
+      synchronizeFrames(engineLoopStartPoint);
   }
   while (true);
 }
