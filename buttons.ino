@@ -5,17 +5,17 @@
 //
 
 // Joystick 1
-int buttonU1 = 30;
-int buttonD1 = 32;
-int buttonL1 = 34;
-int buttonR1 = 36;
+int buttonU1    = 30;
+int buttonD1    = 32;
+int buttonL1    = 34;
+int buttonR1    = 36;
 int buttonFire1 = 38;
 
-// Joystick 2 (2 player mode not supported)
-int buttonU2 = 31;
-int buttonD2 = 33;
-int buttonL2 = 35;
-int buttonR2 = 37;
+// Joystick 2
+int buttonU2    = 31;
+int buttonD2    = 33;
+int buttonL2    = 35;
+int buttonR2    = 37;
 int buttonFire2 = 39;
 
 // Other buttons
@@ -24,25 +24,25 @@ int buttonPause = 43;
 
 void initButtons()
 {
-  // Initialize joystick buttons
-  pinMode(buttonL1,         INPUT);
-  pinMode(buttonR1,         INPUT);
-  pinMode(buttonU1,         INPUT);
-  pinMode(buttonD1,         INPUT);
-  pinMode(buttonFire1,      INPUT);
-  pinMode(buttonFire2,      INPUT);
-  pinMode(buttonReset,      INPUT);
-  pinMode(buttonPause,      INPUT);
-
-  // Activate internal pull-up resistors
-  digitalWrite(buttonL1,    HIGH);
-  digitalWrite(buttonR1,    HIGH);
-  digitalWrite(buttonU1,    HIGH);
-  digitalWrite(buttonD1,    HIGH);
-  digitalWrite(buttonFire1, HIGH);
-  digitalWrite(buttonFire2, HIGH);
-  digitalWrite(buttonReset, HIGH);
-  digitalWrite(buttonPause, HIGH);
+    // Initialize joystick buttons
+    pinMode(buttonL1,         INPUT);
+    pinMode(buttonR1,         INPUT);
+    pinMode(buttonU1,         INPUT);
+    pinMode(buttonD1,         INPUT);
+    pinMode(buttonFire1,      INPUT);
+    pinMode(buttonFire2,      INPUT);
+    pinMode(buttonReset,      INPUT);
+    pinMode(buttonPause,      INPUT);
+  
+    // Activate internal pull-up resistors
+    digitalWrite(buttonL1,    HIGH);
+    digitalWrite(buttonR1,    HIGH);
+    digitalWrite(buttonU1,    HIGH);
+    digitalWrite(buttonD1,    HIGH);
+    digitalWrite(buttonFire1, HIGH);
+    digitalWrite(buttonFire2, HIGH);
+    digitalWrite(buttonReset, HIGH);
+    digitalWrite(buttonPause, HIGH);
 }
 
 boolean buttonPlayer1Fire1Pressed ()
