@@ -7,25 +7,48 @@
 void gameLoop()
 {
     unsigned long engineLoopStartPoint;
-  /* int x = 0;
-   int y = 0;
-   int z = 1;
-   int r = 255;
-   int g = 0;
-   int b = 0;
-   int c = 0;*/
-  do
-  {
-    engineLoopStartPoint = millis();
+    
+    Worm *player1 = new Worm();
+    
+    do
     {
-
+        engineLoopStartPoint = millis();
+        {
+            
+            
+            
+            if (buttonPlayer1RightPressed())
+            {
+                
+                player1->moveRight();    
+            }
+            
+            if (buttonPlayer1LeftPressed())
+            {
+                player1->moveLeft();
+            }
+            
+            if (buttonPlayer1DownPressed())
+            {
+                player1->moveDown();
+            }
+            
+            if (buttonPlayer1UpPressed())
+            {
+                player1->moveUp();
+            }
+            
+        
+            
+            player1->draw();
+            
+            
+            
+            
     /* 
 matrix.drawPixel(x, y, matrix.Color333(0, 0, 0));
 
-      if (buttonPlayer1RightPressed()) x++;
-      if (buttonPlayer1LeftPressed())  x--;
-      if (buttonPlayer1DownPressed()) y++;
-      if (buttonPlayer1UpPressed()) y--;
+
       
       if (buttonPlayer1Fire1Pressed()) c++;
     
@@ -61,9 +84,9 @@ matrix.drawPixel(x, y, matrix.Color333(0, 0, 0));
         
         
     */
-    _P_RED(10, 10);
+    //_P_RED(10, 10);
     
-    _L(12, 12, 50, 50, COLOR_RED);      
+    //_L(12, 12, 50, 50, COLOR_RED);      
     
 
 

@@ -47,40 +47,96 @@ void initButtons()
 
 boolean buttonPlayer1Fire1Pressed ()
 {
-    return digitalRead(buttonFire1) == LOW;
+    boolean result = digitalRead(buttonFire1) == LOW;
+    
+    if (result)
+    {
+        dbg("Player 1 fire 1 pressed");
+    }
+    
+    return result;
 }
 
 boolean buttonPlayer1Fire2Pressed ()
 {
-    return digitalRead(buttonFire2) == LOW;
+    boolean result = digitalRead(buttonFire2) == LOW;
+    
+    if (result)
+    {
+        dbg("Player 1 fire 2 pressed");
+    }
+    
+    return result;
 }
 
 boolean buttonPlayer1LeftPressed ()
 {
-    return digitalRead(buttonL1) == LOW;
+    boolean result = digitalRead(buttonL1) == LOW;
+    
+    if (result)
+    {
+        dbg("Player 1 left pressed");
+    }
+    
+    return result;
 }
 
 boolean buttonPlayer1RightPressed ()
 {
-    return digitalRead(buttonR1) == LOW;
+    boolean result = digitalRead(buttonR1) == LOW;
+    
+    if (result)
+    {
+        dbg("Player 1 right pressed");
+    }
+    
+    return result;
 }
 
 boolean buttonPlayer1UpPressed ()
 {
-    return digitalRead(buttonU1) == LOW;
+    boolean result = digitalRead(buttonU1) == LOW;
+    
+    if (result)
+    {
+        dbg("Player 1 up pressed");
+    }
+    
+    return result;
 }
 
 boolean buttonPlayer1DownPressed ()
 {
-    return digitalRead(buttonD1) == LOW;
+    boolean result = digitalRead(buttonD1) == LOW;
+    
+    if (result)
+    {
+        dbg("Player 1 down pressed");
+    }
+    
+    return result;
 }
 
 boolean buttonResetPressed ()
 {
-    return digitalRead(buttonReset) == LOW;
+    boolean result = digitalRead(buttonReset) == LOW;
+    
+    if (result)
+    {
+        dbg("Reset pressed");
+    }
+    
+    return result;
 }
 
 boolean buttonPausePressed ()
 {
-    return digitalRead(buttonPause) == LOW;
+    boolean result = digitalRead(buttonPause) == LOW;
+    
+    if (result)
+    {
+        dbg("Pause pressed");
+    }
+    
+    return result;
 }
