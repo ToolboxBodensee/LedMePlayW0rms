@@ -4,14 +4,21 @@
 // by Thomas Kekeisen
 //
 
+ 
+     Worm player1 = Worm(COLOR_RED);
+
+      Worm player2 = Worm(COLOR_GREEN); 
+
+
+
 void gameLoop()
 {
     unsigned long engineLoopStartPoint;
     
-    Worm player1 = Worm(COLOR_RED);
-    
-  //  Worm player2 = Worm(COLOR_GREEN); 
+      
 
+   
+   
     do
     {
         engineLoopStartPoint = millis();
@@ -44,7 +51,7 @@ void gameLoop()
             //*/
   
             
-            /*
+            //*
             if (buttonPlayer2RightPressed())
             {
                 player2.moveRight();    
@@ -68,7 +75,7 @@ void gameLoop()
             }
             //*/
         
-          _P_RED(0, 0);
+         // _P_RED(0, 0);
             
             
             

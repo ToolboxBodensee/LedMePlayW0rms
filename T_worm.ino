@@ -5,7 +5,7 @@ class Worm
         unsigned int color;
         int          growCounter;
         int          growThreshold;
-        Point        queue[1024];
+        Point        queue[512];
         int          queueLength;  
         int          x;
         int          y;
