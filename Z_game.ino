@@ -105,6 +105,8 @@ void gameLoop()
                 {
                     player2.changeColor();
                 }
+                
+                powerUpManager.tick(player1, player2);
             }
             //*/
         
@@ -114,7 +116,7 @@ void gameLoop()
 
           
             
-            powerUpManager.tick(player1, player2);
+            
             
             
     /* 

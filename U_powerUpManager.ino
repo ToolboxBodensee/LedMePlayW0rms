@@ -20,7 +20,7 @@ PowerUpManager::PowerUpManager()
      powerUpCount  = 0;
      powerUpLimit  = 24;
      tickCounter   = 0;
-     tickThreshold = 500;
+     tickThreshold = 20;
 }
 
 void PowerUpManager::spawnPowerUp (Worm &player1, Worm &player2)
