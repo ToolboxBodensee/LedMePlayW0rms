@@ -25,6 +25,7 @@ class Worm
         void moveRight();
         void moveToDirection(int newDirection);
         void moveUp();
+        boolean pointIsOnWorm(Point point);
         void setColor(unsigned int newColor);
      
 
@@ -206,6 +207,21 @@ void Worm::moveToDirection(int newDirection)
 void Worm::moveUp()
 {
     moveToDirection(DIRECTION_UP);
+}
+
+boolean Worm::pointIsOnWorm(Point point)
+{
+    for (int i = 0; i < queueLength; ++i)
+    {
+         Point currentPoint = queue[i];
+         
+         if (currentPoint.x == point.x && currentPoint.y == point.y)
+         {
+             return true;
+         } 
+    }
+
+    return false;   
 }
 
 void Worm::setColor (unsigned int newColor)

@@ -9,11 +9,13 @@
 
       Worm player2 = Worm(COLOR_GREEN); 
 
+PowerUpManager powerUpManager = PowerUpManager();
 
 
 void gameLoop()
 {
     unsigned long engineLoopStartPoint;
+   
     
     int tickCounter      = 0;
     int tickThreshold    = 20;
@@ -106,8 +108,13 @@ void gameLoop()
             }
             //*/
         
-          _P_RED(0, 0);
+          _P_RED(1, 1);
+          
+          
+
+          
             
+            powerUpManager.tick(player1, player2);
             
             
     /* 
