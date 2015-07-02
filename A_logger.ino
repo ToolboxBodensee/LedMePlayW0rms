@@ -1,4 +1,4 @@
 void dbg (String output)
 {
-    //Serial.println(output);
+    Serial.println(output);
 }

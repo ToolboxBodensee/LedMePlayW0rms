@@ -15,7 +15,9 @@ void gameLoop()
 {
     unsigned long engineLoopStartPoint;
     
-      
+    int tickCounter   = 0;
+    int tickThreshold = 20;
+    
 
    
    
@@ -25,57 +27,73 @@ void gameLoop()
         {
             dbg("Tick");
             
+            ++tickCounter;
             
-            //*
-            if (buttonPlayer1RightPressed())
+            if (tickCounter >= tickThreshold)
             {
-                player1.moveRight();    
-            }
-            else if (buttonPlayer1LeftPressed())
-            {
-                player1.moveLeft();
-            }
-            else if (buttonPlayer1DownPressed())
-            {
-                player1.moveDown();
-            }
-            else if (buttonPlayer1UpPressed())
-            {
-                player1.moveUp();
-            }
-           
-            if (buttonPlayer1Fire1Pressed())
-            {
-                player1.changeColor();
-            }
-            //*/
-  
+                tickCounter = 0;
             
-            //*
-            if (buttonPlayer2RightPressed())
-            {
-                player2.moveRight();    
-            }
-            else if (buttonPlayer2LeftPressed())
-            {
-                player2.moveLeft();
-            }
-            else if (buttonPlayer2DownPressed())
-            {
-                player2.moveDown();
-            }
-            else if (buttonPlayer2UpPressed())
-            {
-                player2.moveUp();
-            }
-           
-            if (buttonPlayer2Fire1Pressed())
-            {
-                player2.changeColor();
+            
+            
+                //*
+                if (buttonPlayer1RightPressed())
+                {
+                    player1.moveRight();    
+                }
+                else if (buttonPlayer1LeftPressed())
+                {
+                    player1.moveLeft();
+                }
+                else if (buttonPlayer1DownPressed())
+                {
+                    player1.moveDown();
+                }
+                else if (buttonPlayer1UpPressed())
+                {
+                    player1.moveUp();
+                }
+                else
+                {
+                    player1.continueMoving();
+                }
+               
+                if (buttonPlayer1Fire1Pressed())
+                {
+                    player1.changeColor();
+                }
+                //*/
+      
+                
+                //*
+                if (buttonPlayer2RightPressed())
+                {
+                    player2.moveRight();    
+                }
+                else if (buttonPlayer2LeftPressed())
+                {
+                    player2.moveLeft();
+                }
+                else if (buttonPlayer2DownPressed())
+                {
+                    player2.moveDown();
+                }
+                else if (buttonPlayer2UpPressed())
+                {
+                    player2.moveUp();
+                }
+                else
+                {
+                    player2.continueMoving();
+                }
+               
+                if (buttonPlayer2Fire1Pressed())
+                {
+                    player2.changeColor();
+                }
             }
             //*/
         
-         // _P_RED(0, 0);
+          _P_RED(0, 0);
             
             
             

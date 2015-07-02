@@ -59,7 +59,7 @@ boolean buttonPlayer1Fire1Pressed ()
     
     if (result)
     {
-        dbg("Player 1 fire 1 pressed");
+        dbg(F("Player 1 fire 1 pressed"));
     }
     
     return result;
@@ -71,7 +71,7 @@ boolean buttonPlayer1Fire2Pressed ()
     
     if (result)
     {
-        dbg("Player 1 fire 2 pressed");
+        dbg(F("Player 1 fire 2 pressed"));
     }
     
     return result;
@@ -83,7 +83,7 @@ boolean buttonPlayer1LeftPressed ()
     
     if (result)
     {
-        dbg("Player 1 left pressed");
+        dbg(F("Player 1 left pressed"));
     }
     
     return result;
@@ -95,7 +95,7 @@ boolean buttonPlayer1RightPressed ()
     
     if (result)
     {
-        dbg("Player 1 right pressed");
+        dbg(F("Player 1 right pressed"));
     }
     
     return result;
@@ -107,7 +107,7 @@ boolean buttonPlayer1UpPressed ()
     
     if (result)
     {
-        dbg("Player 1 up pressed");
+        dbg(F("Player 1 up pressed"));
     }
     
     return result;
@@ -119,7 +119,7 @@ boolean buttonPlayer1DownPressed ()
     
     if (result)
     {
-        dbg("Player 1 down pressed");
+        dbg(F("Player 1 down pressed"));
     }
     
     return result;
@@ -131,7 +131,7 @@ boolean buttonResetPressed ()
     
     if (result)
     {
-        dbg("Reset pressed");
+        dbg(F("Reset pressed"));
     }
     
     return result;
@@ -143,7 +143,7 @@ boolean buttonPausePressed ()
     
     if (result)
     {
-        dbg("Pause pressed");
+        dbg(F("Pause pressed"));
     }
     
     return result;
@@ -155,7 +155,7 @@ boolean buttonPlayer2Fire1Pressed ()
     
     if (result)
     {
-        dbg("Player 2 fire 1 pressed");
+        dbg(F("Player 2 fire 1 pressed"));
     }
     
     return result;
@@ -191,7 +191,7 @@ boolean buttonPlayer2RightPressed ()
     
     if (result)
     {
-        dbg("Player 2 right pressed");
+        dbg(F("Player 2 right pressed"));
     }
     
     return result;
@@ -215,7 +215,7 @@ boolean buttonPlayer2DownPressed ()
     
     if (result)
     {
-        dbg("Player 2 down pressed");
+        dbg(F("Player 2 down pressed"));
     }
     
     return result;
