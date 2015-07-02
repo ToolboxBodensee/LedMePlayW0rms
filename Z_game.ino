@@ -107,6 +107,9 @@ void gameLoop()
                 }
                 
                 powerUpManager.tick(player1, player2);
+                
+                
+                //tone(2, NOTE_FS5, 20);
             }
             //*/
         

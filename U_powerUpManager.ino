@@ -71,6 +71,8 @@ void PowerUpManager::tryPlayer (Worm &player)
         
         if (powerUpCollected)
         {
+            tone(2, NOTE_C4, 50); // TODO soundmanager
+            
             dbg(F("Powerup collected"));
             
             int shrinkByPercent = 20 + (rand() % 10);
