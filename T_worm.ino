@@ -27,6 +27,7 @@ class Worm
         void moveUp();
         boolean pointIsOnWorm(Point point);
         void setColor(unsigned int newColor);
+        void shrinkByPercentAmoutOfLength(int percent);
      
 
 };
@@ -195,7 +196,7 @@ void Worm::moveToDirection(int newDirection)
             alive = false;
         }  
     }
-    alive = true;
+    alive = true; // TODO: remove
     lastDirection = newDirection;
     
     if (alive)
@@ -226,5 +227,39 @@ boolean Worm::pointIsOnWorm(Point point)
 
 void Worm::setColor (unsigned int newColor)
 {
-     color = newColor;   
+    color = newColor;   
+}
+
+void Worm::shrinkByPercentAmoutOfLength(int percent)
+{
+    int pointsToRemove = (percent / 100) * queueLength;
+   
+        pointsToRemove = 3;
+   
+    for (int i = 0; i < pointsToRemove; ++i)
+    {
+        
+        Point point = queue[i];
+        _OFF(point.x, point.y);
+        
+   
+    }
+    
+     for (int i = 0; i < pointsToRemove; ++i)
+    {
+        
+      
+        // TODO move in method
+        for (int ii = 0; ii < queueLength - 1; ++ii)
+        {
+            queue[ii] = queue[ii + 1];
+            
+            
+        }
+        
+        --queueLength;
+    }
+    
+    
+    
 }

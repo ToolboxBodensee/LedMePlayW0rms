@@ -29,7 +29,7 @@ void gameLoop()
     {
         engineLoopStartPoint = millis();
         {
-            dbg("Tick");
+            // dbg("Tick");
             
             ++tickCounter;
             ++speedUpCounter;

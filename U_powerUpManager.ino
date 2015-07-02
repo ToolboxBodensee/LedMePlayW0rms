@@ -11,7 +11,7 @@ class PowerUpManager
         PowerUpManager();
         void spawnPowerUp(Worm &player1, Worm &player2);
         void tick(Worm &player1, Worm &player2);
-        void tryPlayer(Worm player);     
+        void tryPlayer(Worm &player);     
 
 };
 
@@ -56,9 +56,40 @@ void PowerUpManager::tick(Worm &player1, Worm &player2)
         
         spawnPowerUp(player1, player2);
     }
+    
+    tryPlayer(player1);
+    tryPlayer(player2);
 }
 
-void PowerUpManager::tryPlayer (Worm player)
+void PowerUpManager::tryPlayer (Worm &player)
 {
+    for (int i = 0; i < powerUpCount; ++i)
+    {
+        Point point = positions[i];
+        
+        boolean powerUpCollected = player.pointIsOnWorm(point);
+        
+        if (powerUpCollected)
+        {
+            dbg(F("Powerup collected"));
+            
+            int shrinkByPercent = 20 + (rand() % 10);
+            
+            
+            
+            player.shrinkByPercentAmoutOfLength(shrinkByPercent);
+            
+            
+            for (int ii = i; ii < powerUpCount; ++ii)
+            {
+                positions[ii] = positions[ii + 1];
+            }
+            
+            --powerUpCount;
+            
+            return;
+        }
+    }
+    
     
 }

@@ -29,10 +29,10 @@ void initButtons()
     pinMode(buttonR1,         INPUT);
     pinMode(buttonU1,         INPUT);
     pinMode(buttonD1,         INPUT);
-   /* pinMode(buttonL2,         INPUT);
+    pinMode(buttonL2,         INPUT);
     pinMode(buttonR2,         INPUT);
     pinMode(buttonU2,         INPUT);
-    pinMode(buttonD2,         INPUT);*/
+    pinMode(buttonD2,         INPUT);
     pinMode(buttonFire1,      INPUT);
     pinMode(buttonFire2,      INPUT);
     pinMode(buttonReset,      INPUT);
@@ -43,10 +43,10 @@ void initButtons()
     digitalWrite(buttonR1,    HIGH);
     digitalWrite(buttonU1,    HIGH);
     digitalWrite(buttonD1,    HIGH);
-  //  digitalWrite(buttonL2,    HIGH);
-   // digitalWrite(buttonR2,    HIGH);
-   // digitalWrite(buttonU2,    HIGH);
-   // digitalWrite(buttonD2,    HIGH);
+    digitalWrite(buttonL2,    HIGH);
+    digitalWrite(buttonR2,    HIGH);
+    digitalWrite(buttonU2,    HIGH);
+    digitalWrite(buttonD2,    HIGH);
     digitalWrite(buttonFire1, HIGH);
     digitalWrite(buttonFire2, HIGH);
     digitalWrite(buttonReset, HIGH);
