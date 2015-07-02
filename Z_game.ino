@@ -15,8 +15,10 @@ void gameLoop()
 {
     unsigned long engineLoopStartPoint;
     
-    int tickCounter   = 0;
-    int tickThreshold = 20;
+    int tickCounter      = 0;
+    int tickThreshold    = 20;
+    int speedUpCounter   = 0;
+    int speedUpThreshold = 500;
     
 
    
@@ -28,6 +30,17 @@ void gameLoop()
             dbg("Tick");
             
             ++tickCounter;
+            ++speedUpCounter;
+            
+            if (speedUpCounter >= speedUpThreshold)
+            {
+                speedUpCounter = 0;
+                 
+                if (tickThreshold > 4)
+                {
+                    --tickThreshold;
+                }      
+            }
             
             if (tickCounter >= tickThreshold)
             {
