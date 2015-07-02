@@ -232,20 +232,19 @@ void Worm::setColor (unsigned int newColor)
 
 void Worm::shrinkByPercentAmoutOfLength(int percent)
 {
-    int pointsToRemove = (percent / 100) * queueLength;
+    float factor = percent / 100.0;
+    int pointsToRemove = factor * (float)queueLength;
    
-        pointsToRemove = 3;
+    // dbgInt(percent);
+    // dbgInt(pointsToRemove);
    
     for (int i = 0; i < pointsToRemove; ++i)
     {
-        
         Point point = queue[i];
         _OFF(point.x, point.y);
-        
-   
     }
     
-     for (int i = 0; i < pointsToRemove; ++i)
+    for (int i = 0; i < pointsToRemove; ++i)
     {
         
       
