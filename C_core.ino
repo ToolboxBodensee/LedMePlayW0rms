@@ -46,6 +46,11 @@ void initMatrix ()
     matrix.setTextWrap(false); 
 }
 
+void _C ()
+{
+    clearMatrix();    
+}
+
 void _L (int startX, int startY, int endX, int endY, unsigned int color)
 {
     drawLine(startX, startY, endX, endY, color);
@@ -128,8 +133,8 @@ void loop()
     do
     {
 
-        gameLoop();
-
+        //gameLoop();
+        menuLoop();
     }
     while (true);
 }
