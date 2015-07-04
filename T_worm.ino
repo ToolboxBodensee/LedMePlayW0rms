@@ -219,6 +219,10 @@ void Worm::moveToDirection(int newDirection)
             moved();
         }
     }
+    else
+    {
+        continueMoving();   
+    }
 }
 
 void Worm::moveUp()
