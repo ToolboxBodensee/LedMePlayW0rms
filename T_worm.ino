@@ -17,6 +17,7 @@ class Worm
         Worm(unsigned int newColor);
         void changeColor();
         void continueMoving();
+        Point currentPosition();
         void draw();
         boolean isAlive();
         void moved();
@@ -93,6 +94,12 @@ void Worm::continueMoving ()
     moveToDirection(lastDirection);
 }
 
+Point Worm::currentPosition()
+{
+    return { x, y };
+    
+}
+
 void Worm::draw ()
 {
     // turn of first
@@ -156,52 +163,61 @@ void Worm::moveRight()
 
 void Worm::moveToDirection(int newDirection)
 {
-    if (newDirection == DIRECTION_UP)
+    if
+    (
+        (newDirection == DIRECTION_UP    && lastDirection != DIRECTION_DOWN)  ||
+        (newDirection == DIRECTION_DOWN  && lastDirection != DIRECTION_UP)    ||
+        (newDirection == DIRECTION_LEFT  && lastDirection != DIRECTION_RIGHT) ||
+        (newDirection == DIRECTION_RIGHT && lastDirection != DIRECTION_LEFT)
+    )
     {
-        --y;
+        if (newDirection == DIRECTION_UP)
+        {
+            --y;
+            
+            if (y < 0)
+            {
+                y = 0;
+                alive = false;
+            } 
+        }
+        else if (newDirection == DIRECTION_RIGHT)
+        {
+            ++x;
+               
+            if (x > 31)
+            {
+                x = 31;
+                alive = false;
+            }   
+        }
+        else if (newDirection == DIRECTION_LEFT)
+        {
+            --x;
+            
+            if (x < 0)
+            {
+                x = 0;
+                alive = false;
+            }    
+        }
+        else if (newDirection == DIRECTION_DOWN)
+        {
+            ++y;
+               
+            if (y > 31)
+            {
+                y = 31;
+                alive = false;
+            }  
+        }
+        alive = true; // TODO: remove
+        lastDirection = newDirection;
         
-        if (y < 0)
+        if (alive)
         {
-            y = 0;
-            alive = false;
-        } 
-    }
-    else if (newDirection == DIRECTION_RIGHT)
-    {
-        ++x;
-           
-        if (x > 31)
-        {
-            x = 31;
-            alive = false;
-        }   
-    }
-    else if (newDirection == DIRECTION_LEFT)
-    {
-        --x;
-        
-        if (x < 0)
-        {
-            x = 0;
-            alive = false;
-        }    
-    }
-    else if (newDirection == DIRECTION_DOWN)
-    {
-        ++y;
-           
-        if (y > 31)
-        {
-            y = 31;
-            alive = false;
-        }  
-    }
-    alive = true; // TODO: remove
-    lastDirection = newDirection;
-    
-    if (alive)
-    {
-        moved();
+            moved();
+        }
     }
 }
 
