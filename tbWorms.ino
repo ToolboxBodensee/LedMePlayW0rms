@@ -2,4 +2,7 @@
 // for the LEDmePlay
 //
 // by Thomas Kekeisen
-//w
+//
+
+// TODO: Die Pfeile im Hauptmenü könnten auch über eine "Clear Rect" function gelöscht werden
+// TODO: Nicht-Verbundenen PIN für Random-Seed nehmen

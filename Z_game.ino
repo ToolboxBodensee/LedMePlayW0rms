@@ -12,17 +12,17 @@
 PowerUpManager powerUpManager = PowerUpManager();
 
 
-void gameLoop()
+void gameLoop(int playerCount)
 {
+    _C();
+    
     unsigned long engineLoopStartPoint;
    
-    
-    int tickCounter      = 0;
-    int tickThreshold    = 20;
-    int speedUpCounter   = 0;
-    int speedUpThreshold = 500;
-    
 
+    int  tickCounter      = 0;
+    int  tickThreshold    = 20;
+    int  speedUpCounter   = 0;
+    int  speedUpThreshold = 500;
    
    
     do
