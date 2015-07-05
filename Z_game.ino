@@ -14,7 +14,7 @@ PowerUpManager powerUpManager = PowerUpManager();
 
 
 
-void gameLoop(int playerCount)
+boolean gameLoop(int playerCount)
 {
   _C();
 
@@ -25,6 +25,8 @@ void gameLoop(int playerCount)
   int  speedUpCounter   = 0;
   int  speedUpThreshold = 500;
   
+  player1.reset();
+  player2.reset();
 
 
   do
@@ -146,7 +148,7 @@ void gameLoop(int playerCount)
 
     if (!stillPlayerAlive())
     {
-        
+        return scoreLoop();
     }
 
 

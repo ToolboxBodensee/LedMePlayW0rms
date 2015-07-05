@@ -6,6 +6,8 @@
 
 void menuLoop()
 {
+    _C();
+    
     unsigned long engineLoopStartPoint;
     
     int  arrowPosition  = 1;
@@ -46,7 +48,7 @@ void menuLoop()
             }
             else if (buttonPlayer1Fire1Pressed())
             {
-                gameLoop(playerCount);
+                redraw = gameLoop(playerCount);
             }
             
             if (playerCount < 1)

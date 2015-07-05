@@ -65,6 +65,14 @@ boolean buttonPlayer1Fire1Pressed ()
     return result;
 }
 
+boolean buttonPlayer1Fire1Wait ()
+{
+    while (buttonPlayer1Fire1Pressed())
+    {
+        
+    }
+}
+
 boolean buttonPlayer1Fire2Pressed ()
 {
     boolean result = digitalRead(buttonFire1) == LOW;

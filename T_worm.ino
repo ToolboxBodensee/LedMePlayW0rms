@@ -30,6 +30,7 @@ class Worm
         void moveUp();
         boolean pointIsOnWorm(Point point);
         boolean pointIsOnWorm(Point point, boolean skipHead);
+        void reset();
         void setColor(unsigned int newColor);
         void shrinkByPercentAmoutOfLength(int percent);
      
@@ -38,19 +39,14 @@ class Worm
 
 Worm::Worm()
 {
-
+    reset();
 }
 
 Worm::Worm(unsigned int newColor)
 {
-    alive         = true;
-    color         = newColor;
-    growCounter   = 0;
-    growThreshold = 10;
-    queueLength   = 1;
-    x = 3 + (rand() % 26);
-    y = 3 + (rand() % 26);
-    queue[0] = { x, y };
+    color = newColor;
+    
+    reset();
 }
 
 void Worm::addPosition (Point point, boolean grow)
@@ -280,6 +276,17 @@ boolean Worm::pointIsOnWorm(Point point, boolean skipHead)
     }
 
     return false;
+}
+
+void Worm::reset()
+{
+    alive         = true;
+    growCounter   = 0;
+    growThreshold = 10;
+    queueLength   = 1;
+    x = 3 + (rand() % 26);
+    y = 3 + (rand() % 26);
+    queue[0] = { x, y };
 }
 
 void Worm::setColor (unsigned int newColor)
