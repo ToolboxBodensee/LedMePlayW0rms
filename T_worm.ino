@@ -39,9 +39,9 @@ Worm::Worm(unsigned int newColor)
     growCounter   = 0;
     growThreshold = 10;
     queueLength   = 1;
-    x = 31;
-    y = 31;
-    queue[0] = {31, 31};
+    x = 3 + (rand() % 26);
+    y = 3 + (rand() % 26);
+    queue[0] = { x, y };
 }
 
 void Worm::addPosition (Point point, boolean grow)
