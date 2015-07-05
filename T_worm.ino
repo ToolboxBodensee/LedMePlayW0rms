@@ -225,6 +225,11 @@ void Worm::moveUp()
 
 boolean Worm::pointIsOnWorm(Point point)
 {
+    if (!isAlive())
+    {
+        return false;
+    }
+    
     return Worm::pointIsOnWorm(point, false);
 }
 
