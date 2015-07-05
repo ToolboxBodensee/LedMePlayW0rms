@@ -10,3 +10,5 @@
 // TODO: alles auf den Point-Struct refactoren?
 // TODO: epische explosionseffekte
 // TODO: Spielfeld-größe als define
+
+

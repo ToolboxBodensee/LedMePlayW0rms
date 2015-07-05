@@ -10,17 +10,33 @@ void menuLoop()
     
     unsigned long engineLoopStartPoint;
     
-    int  arrowPosition  = 1;
-    int  arrowThreshold = 20;
-    int  arrowTickCount = 0;
-    int  playerCount    = 1;
-    bool redraw         = true;
+    int  arrowPosition      = 1;
+    int  arrowThreshold     = 20;
+    int  arrowTickCount     = 0;
+    int  explosionCount     = 0;
+    int  explosionThreshold = 40;
+    int  playerCount        = 1;
+    bool redraw             = true;
     
     do
     {
         engineLoopStartPoint = millis();
         {
+            if (arrowPosition == 1)
+            {
+                arrowUp(14, 7 - 0, COLOR_BLACK);
+                arrowDown(14, 23 + 0, COLOR_BLACK);
+            }
+            else if (arrowPosition == 0)
+            {
+                arrowUp(14, 7 - 1, COLOR_BLACK);
+                arrowDown(14, 23 + 1, COLOR_BLACK);
+            }
+            
+            redraw = explosionManager.tick();
+            
             ++arrowTickCount;
+            ++explosionCount;
             
             if (arrowTickCount >= arrowThreshold)
             {
@@ -34,6 +50,13 @@ void menuLoop()
                 {
                     arrowPosition = 1;
                 }
+            }
+            
+            if (explosionCount >= explosionThreshold)
+            {
+                explosionCount     = 0;
+                explosionThreshold = 25 + (rand() % 60);
+                explosionManager.newExplosion({ rand() % 31, rand() % 31 }, 2 + rand() % 6);
             }
             
             if (buttonPlayer1DownPressed() && playerCount < 4)
@@ -66,12 +89,6 @@ void menuLoop()
             char outputString[80];
             strcpy(outputString, playerCountString);
             strcat(outputString, "P");
-            
-            arrowUp(14, 7 - 0, COLOR_BLACK);
-            arrowUp(14, 7 - 1, COLOR_BLACK);
-            
-            arrowDown(14, 23 + 0, COLOR_BLACK);
-            arrowDown(14, 23 + 1, COLOR_BLACK);
             
             if (playerCount > 1)
             {

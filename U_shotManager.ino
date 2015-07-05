@@ -45,9 +45,9 @@ void ShotManager::removeShot(Shot &shot, int position)
 {
     shot.remove();
            
-    for (int ii = position; ii < shotCount; ++ii)
+    for (int i = position; i < shotCount; ++i)
     {
-        shots[ii] = shots[ii + 1];
+        shots[i] = shots[i + 1];
     } 
        
     --shotCount;

@@ -21,8 +21,6 @@
 #define D   A3
 RGBmatrixPanel matrix(A, B, C, D, CLK, LAT, OE, false);
 
-
-
 void setup()
 {
   // Initialize serial connection
