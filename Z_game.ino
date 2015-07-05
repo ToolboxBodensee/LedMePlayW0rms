@@ -11,6 +11,7 @@ Worm player2 = Worm(COLOR_GREEN);
 
 PowerUpManager powerUpManager = PowerUpManager();
 
+ShotManager shotManager = ShotManager();
 
 
 
@@ -21,6 +22,7 @@ boolean gameLoop(int playerCount)
   unsigned long engineLoopStartPoint;
 
   int  tickCounter      = 0;
+  int  tickCounterHalf  = 0;
   int  tickThreshold    = 20;
   int  speedUpCounter   = 0;
   int  speedUpThreshold = 500;
@@ -36,6 +38,7 @@ boolean gameLoop(int playerCount)
       // dbg("Tick");
 
       ++tickCounter;
+      ++tickCounterHalf;
       ++speedUpCounter;
 
       if (speedUpCounter >= speedUpThreshold)
@@ -47,6 +50,8 @@ boolean gameLoop(int playerCount)
           --tickThreshold;
         }
       }
+      
+
 
       if (tickCounter >= tickThreshold)
       {
@@ -80,7 +85,7 @@ boolean gameLoop(int playerCount)
     
             if (buttonPlayer1Fire1Pressed())
             {
-              player1.changeColor();
+              shotManager.newShot(player1);
             }
         }
         //*/
@@ -112,7 +117,7 @@ boolean gameLoop(int playerCount)
     
             if (buttonPlayer2Fire1Pressed())
             {
-              player2.changeColor();
+              shotManager.newShot(player2);
             }
         }
 
@@ -139,6 +144,13 @@ boolean gameLoop(int playerCount)
 
 
         //tone(2, NOTE_FS5, 20);
+      }
+            if ((tickCounterHalf * 2) >= tickThreshold)
+      {
+        tickCounterHalf = 0;
+        
+        shotManager.tick(player1, player2, powerUpManager);
+        
       }
       //*/
 

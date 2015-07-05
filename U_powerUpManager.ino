@@ -9,6 +9,8 @@ class PowerUpManager
         
     public:
         PowerUpManager();
+        void removePowerUpAtIndex(int index);
+        bool removePowerUpForPosition(Point point);
         void spawnPowerUp(Worm &player1, Worm &player2);
         void tick(Worm &player1, Worm &player2);
         void tryPlayer(Worm &player);     
@@ -21,6 +23,33 @@ PowerUpManager::PowerUpManager()
      powerUpLimit  = 24;
      tickCounter   = 0;
      tickThreshold = 20;
+}
+
+boolean PowerUpManager::removePowerUpForPosition(Point point)
+{
+    for (int i = 0; i < powerUpCount; ++i)
+    {
+        Point powerUpPoint = positions[i];
+      
+        if (powerUpPoint.x == point.x && powerUpPoint.y == point.y)
+        {
+            removePowerUpAtIndex(i);
+            
+            return true;
+        }  
+    }
+ 
+    return false;   
+}
+
+void PowerUpManager::removePowerUpAtIndex(int index)
+{
+    for (int i = index; i < powerUpCount; ++i)
+    {
+        positions[i] = positions[i + 1];
+    }
+    
+    --powerUpCount;
 }
 
 void PowerUpManager::spawnPowerUp (Worm &player1, Worm &player2)
@@ -81,13 +110,8 @@ void PowerUpManager::tryPlayer (Worm &player)
             
             player.shrinkByPercentAmoutOfLength(shrinkByPercent);
             
-            
-            for (int ii = i; ii < powerUpCount; ++ii)
-            {
-                positions[ii] = positions[ii + 1];
-            }
-            
-            --powerUpCount;
+            removePowerUpAtIndex(i);
+          
             
             return;
         }

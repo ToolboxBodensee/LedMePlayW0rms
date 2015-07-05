@@ -3,6 +3,7 @@ class Worm
     private:
         boolean      alive;
         unsigned int color;
+        boolean      forceGrow;
         int          growCounter;
         int          growThreshold;
         int          lastDirection;
@@ -21,6 +22,8 @@ class Worm
         void continueMoving();
         Point currentPosition();
         void die();
+        int getDirection();
+        void hitByShot();
         boolean isAlive();
         void moved();
         void moveDown();
@@ -51,6 +54,12 @@ Worm::Worm(unsigned int newColor)
 
 void Worm::addPosition (Point point, boolean grow)
 {
+    if (forceGrow)
+    {
+        forceGrow = false;
+        grow = true;
+    }
+    
     if (!grow)
     {
          Point queueEnd = queue[0];
@@ -100,6 +109,18 @@ void Worm::die()
         queueLength = 0;
     }
 };
+
+int Worm::getDirection()
+{
+    return lastDirection;
+}
+
+void Worm::hitByShot()
+{
+    forceGrow = true;
+  
+    // TODO sound=   
+}
 
 boolean Worm::isAlive()
 {

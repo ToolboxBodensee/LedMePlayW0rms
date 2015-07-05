@@ -96,6 +96,11 @@ void _P_RED (int x, int y)
     drawPixel(x, y, COLOR_RED);
 }
 
+void _P_YELLOW (int x, int y)
+{
+    drawPixel(x, y, COLOR_YELLOW);
+}
+
 void clearMatrix ()
 {
      matrix.fillScreen(COLOR_BLACK);  
