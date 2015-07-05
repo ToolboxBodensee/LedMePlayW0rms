@@ -11,6 +11,7 @@ class Worm
         void         offQueue(int start, int count);
         Point        queue[128u];
         int          queueLength;  
+        int          shotCooldown;
         int          x;
         int          y;
         void         addPosition(Point point, boolean grow);
@@ -18,6 +19,7 @@ class Worm
     public:
         Worm();
         Worm(unsigned int newColor);
+        boolean canShoot();
         void changeColor();
         void continueMoving();
         Point currentPosition();
@@ -36,6 +38,8 @@ class Worm
         void reset();
         void setColor(unsigned int newColor);
         void shrinkByPercentAmoutOfLength(int percent);
+        void shot();
+        void tick();
         void redraw();
      
 
@@ -80,6 +84,11 @@ void Worm::addPosition (Point point, boolean grow)
     
     Point queueStart = queue[queueLength - 1];
     _P(queueStart.x, queueStart.y, color);
+}
+
+boolean Worm::canShoot()
+{
+    return shotCooldown == 0;
 }
 
 void Worm::changeColor ()
@@ -309,4 +318,17 @@ void Worm::redraw()
         Point currentPoint = queue[i];
         _P(currentPoint.x, currentPoint.y, color);
     }
+}
+
+void Worm::shot()
+{
+    shotCooldown = 5;
+};
+
+void Worm::tick()
+{
+    if (shotCooldown > 0)
+    {
+        --shotCooldown;
+    }   
 }

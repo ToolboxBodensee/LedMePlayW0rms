@@ -30,10 +30,15 @@ void ShotManager::newShot(Point position, int direction)
 
 void ShotManager::newShot(Worm &player)
 {
-    int wormDirection = player.getDirection();
-    Point wormPosition = player.currentPosition();
-    
-    newShot(wormPosition, wormDirection);
+    if (player.canShoot())
+    {
+        player.shot();
+        
+        int wormDirection = player.getDirection();
+        Point wormPosition = player.currentPosition();
+        
+        newShot(wormPosition, wormDirection);
+    }
 }
 
 void ShotManager::removeShot(Shot &shot, int position)

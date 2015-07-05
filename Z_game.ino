@@ -57,6 +57,8 @@ boolean gameLoop(int playerCount)
       {
         tickCounter = 0;
 
+        player1.tick();
+        player2.tick();
 
 
 
