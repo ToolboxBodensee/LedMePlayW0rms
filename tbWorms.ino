@@ -10,3 +10,4 @@
 // TODO: alles auf den Point-Struct refactoren?
 // TODO: epische explosionseffekte
 // TODO: Shoot cooldown
+// TODO: Spielfeld-größe als define

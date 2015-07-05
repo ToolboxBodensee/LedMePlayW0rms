@@ -8,6 +8,7 @@ class ShotManager
         void newShot(Point position, int direction);
         void newShot(Worm &player);
         ShotManager(); 
+        void removeShot(Shot &shot, int position); 
         void tick(Worm &player1, Worm &player2, PowerUpManager &powerUpManager);
 
 };
@@ -33,6 +34,18 @@ void ShotManager::newShot(Worm &player)
     Point wormPosition = player.currentPosition();
     
     newShot(wormPosition, wormDirection);
+}
+
+void ShotManager::removeShot(Shot &shot, int position)
+{
+    shot.remove();
+           
+    for (int ii = position; ii < shotCount; ++ii)
+    {
+        shots[ii] = shots[ii + 1];
+    } 
+       
+    --shotCount;
 }
 
 void ShotManager::tick(Worm &player1, Worm &player2, PowerUpManager &powerUpManager)
@@ -66,18 +79,17 @@ void ShotManager::tick(Worm &player1, Worm &player2, PowerUpManager &powerUpMana
         
         if (hit)
         {
-            shot.remove();
-            
-            for (int ii = i; ii < shotCount; ++ii)
-            {
-                shots[ii] = shots[ii + 1];
-            }
+            removeShot(shot, i);
             
             if (playerHit)
             {
                 player1.redraw();
                 player2.redraw();   
             }
+        }
+        else if (shot.isOutOfBounds())
+        {
+            removeShot(shot, i);
         }
     }
 }

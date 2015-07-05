@@ -7,6 +7,7 @@ class Shot
     public:
         Point getPosition();
         void goToNextPosition();
+        boolean isOutOfBounds();
         void move();
         void remove();
         Shot();
@@ -37,6 +38,11 @@ void Shot::goToNextPosition()
         ++position.x;
     }
 }
+
+boolean Shot::isOutOfBounds()
+{
+    return position.x < 0 || position.x > 31 || position.y < 0 || position.y > 31;
+};
 
 void Shot::move()
 {
