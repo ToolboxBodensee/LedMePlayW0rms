@@ -27,7 +27,8 @@ void setup()
   Serial.begin(9600);
 
   // Initialize random number generator
-  randomSeed(analogRead(40));
+  randomSeed(analogRead(0));
+  randomSeed(analogRead(rand() % 40));
 
   initButtons();
   initMatrix();
