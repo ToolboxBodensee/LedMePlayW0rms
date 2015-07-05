@@ -86,6 +86,8 @@ void ShotManager::tick(Worm &player1, Worm &player2, PowerUpManager &powerUpMana
         {
             removeShot(shot, i);
             
+            explosionManager.newExplosion(shotPosition, 6 + (rand() % 2));
+            
             if (playerHit)
             {
                 player1.redraw();

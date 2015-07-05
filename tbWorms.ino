@@ -8,7 +8,6 @@
 // TODO: Nicht-Verbundenen PIN für Random-Seed nehmen
 // TODO: Frontalcrash buggt
 // TODO: alles auf den Point-Struct refactoren?
-// TODO: epische explosionseffekte
 // TODO: Spielfeld-größe als define
 
 

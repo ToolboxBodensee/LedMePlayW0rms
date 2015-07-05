@@ -17,7 +17,9 @@ ShotManager shotManager = ShotManager();
 
 boolean gameLoop(int playerCount)
 {
-  _C();
+    explosionManager.clearAll();
+  
+    _C();
 
   unsigned long engineLoopStartPoint;
 
@@ -51,6 +53,7 @@ boolean gameLoop(int playerCount)
         }
       }
       
+      boolean explosionActive = explosionManager.tick();
 
 
       if (tickCounter >= tickThreshold)
@@ -156,6 +159,14 @@ boolean gameLoop(int playerCount)
         
       }
       //*/
+      
+      
+      if (explosionActive)
+      {
+          player1.redraw();
+          player2.redraw();
+          powerUpManager.redraw();
+      }
 
       _P_RED(1, 1);
 

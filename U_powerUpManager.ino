@@ -9,6 +9,7 @@ class PowerUpManager
         
     public:
         PowerUpManager();
+        void redraw();
         void removePowerUpAtIndex(int index);
         bool removePowerUpForPosition(Point point);
         void spawnPowerUp(Worm &player1, Worm &player2);
@@ -24,6 +25,15 @@ PowerUpManager::PowerUpManager()
      tickCounter   = 0;
      tickThreshold = 20;
 }
+
+void PowerUpManager::redraw()
+{
+    for (int i = 0; i < powerUpCount; ++i)
+    {
+        Point powerUpPoint = positions[i];
+        _P_BLUE(powerUpPoint.x, powerUpPoint.y); 
+    }
+};
 
 boolean PowerUpManager::removePowerUpForPosition(Point point)
 {

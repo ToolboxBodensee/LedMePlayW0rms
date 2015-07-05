@@ -88,7 +88,7 @@ void Explosion::performNextState()
         }
         else
         {
-            matrix.fillCircle(point.x, point.y, state - size, matrix.Color888(0, 0, 0));
+            matrix.fillCircle(point.x, point.y, state - size + 1, matrix.Color888(0, 0, 0));
         }
         
         ++state;
@@ -107,6 +107,7 @@ class ExplosionManager
         
     public:
         ExplosionManager();
+        void clearAll();
         void newExplosion(Point point, int size);
         boolean tick(); 
 
@@ -116,6 +117,11 @@ ExplosionManager::ExplosionManager()
 {
     explosionCounter = 0;
 }
+
+void ExplosionManager::clearAll()
+{
+    explosionCounter = 0;  
+};
 
 void ExplosionManager::newExplosion(Point point, int size)
 {
@@ -140,7 +146,7 @@ boolean ExplosionManager::tick()
         {
             for (int ii = i; ii < explosionCounter; ++ii)
             {
-                explosions[i] = explosions[ii + 1];
+                explosions[ii] = explosions[ii + 1];
             }
             
             --explosionCounter;
