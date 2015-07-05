@@ -36,6 +36,7 @@ class Worm
         void reset();
         void setColor(unsigned int newColor);
         void shrinkByPercentAmoutOfLength(int percent);
+        void redraw();
      
 
 };
@@ -77,7 +78,6 @@ void Worm::addPosition (Point point, boolean grow)
     
     queue[queueLength - 1] = point;
     
-       
     Point queueStart = queue[queueLength - 1];
     _P(queueStart.x, queueStart.y, color);
 }
@@ -299,5 +299,14 @@ void Worm::shrinkByPercentAmoutOfLength(int percent)
         moveQueue (0, queueLength - 1);
         
         --queueLength;
+    }
+}
+
+void Worm::redraw()
+{
+    for (int i = 0; i < queueLength; ++i)
+    {
+        Point currentPoint = queue[i];
+        _P(currentPoint.x, currentPoint.y, color);
     }
 }

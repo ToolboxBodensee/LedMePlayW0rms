@@ -41,20 +41,19 @@ void ShotManager::tick(Worm &player1, Worm &player2, PowerUpManager &powerUpMana
         
         Point shotPosition = shot.getPosition();
         boolean hit = false;
+        boolean playerHit = false;
         
         if (player1.pointIsOnWorm(shotPosition))
         {
             player1.hitByShot();
         
-            _P_RED(shotPosition.x, shotPosition.y);
-            hit = true;
+            hit = playerHit = true;
         }
         else if (player2.pointIsOnWorm(shotPosition))
         {
             player2.hitByShot();
         
-            _P_RED(shotPosition.x, shotPosition.y);
-            hit = true;
+            hit = playerHit = true;
         }
         
         if (!hit)
@@ -70,8 +69,12 @@ void ShotManager::tick(Worm &player1, Worm &player2, PowerUpManager &powerUpMana
             {
                 shots[ii] = shots[ii + 1];
             }
+            
+            if (playerHit)
+            {
+                player1.redraw();
+                player2.redraw();   
+            }
         }
     }
 }
-
-
