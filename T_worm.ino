@@ -6,7 +6,7 @@ class Worm
         int          growCounter;
         int          growThreshold;
         int          lastDirection;
-        Point        queue[512];
+        Point        queue[128u];
         int          queueLength;  
         int          x;
         int          y;
@@ -14,10 +14,12 @@ class Worm
         void         addPosition(Point point, boolean grow);
  
     public:
+        Worm();
         Worm(unsigned int newColor);
         void changeColor();
         void continueMoving();
         Point currentPosition();
+        void die();
         void draw();
         boolean isAlive();
         void moved();
@@ -27,14 +29,21 @@ class Worm
         void moveToDirection(int newDirection);
         void moveUp();
         boolean pointIsOnWorm(Point point);
+        boolean pointIsOnWorm(Point point, boolean skipHead);
         void setColor(unsigned int newColor);
         void shrinkByPercentAmoutOfLength(int percent);
      
 
 };
 
+Worm::Worm()
+{
+
+}
+
 Worm::Worm(unsigned int newColor)
 {
+    alive         = true;
     color         = newColor;
     growCounter   = 0;
     growThreshold = 10;
@@ -99,6 +108,27 @@ Point Worm::currentPosition()
     return { x, y };
     
 }
+
+void Worm::die()
+{
+    if (alive)
+    {
+        alive = false;
+        
+        tone(2, NOTE_C4, 50); // TODO soundmanager
+        
+        for (int ii = 0; ii < queueLength; ++ii)
+        {
+                            Point point = queue[ii];
+            _OFF(point.x, point.y);
+            //queue[ii] = 0;
+         
+        }
+        
+        queueLength = 0;
+    }
+    
+};
 
 void Worm::draw ()
 {
@@ -178,7 +208,7 @@ void Worm::moveToDirection(int newDirection)
             if (y < 0)
             {
                 y = 0;
-                alive = false;
+                die();
             } 
         }
         else if (newDirection == DIRECTION_RIGHT)
@@ -188,7 +218,7 @@ void Worm::moveToDirection(int newDirection)
             if (x > 31)
             {
                 x = 31;
-                alive = false;
+                die();
             }   
         }
         else if (newDirection == DIRECTION_LEFT)
@@ -198,7 +228,7 @@ void Worm::moveToDirection(int newDirection)
             if (x < 0)
             {
                 x = 0;
-                alive = false;
+                die();
             }    
         }
         else if (newDirection == DIRECTION_DOWN)
@@ -208,10 +238,10 @@ void Worm::moveToDirection(int newDirection)
             if (y > 31)
             {
                 y = 31;
-                alive = false;
+                die();
             }  
         }
-        alive = true; // TODO: remove
+
         lastDirection = newDirection;
         
         if (alive)
@@ -232,7 +262,14 @@ void Worm::moveUp()
 
 boolean Worm::pointIsOnWorm(Point point)
 {
-    for (int i = 0; i < queueLength; ++i)
+    return Worm::pointIsOnWorm(point, false);
+}
+
+boolean Worm::pointIsOnWorm(Point point, boolean skipHead)
+{
+    int limit = queueLength - (skipHead ? 1 : 0);
+    
+    for (int i = 0; i < limit; ++i)
     {
          Point currentPoint = queue[i];
          
@@ -242,7 +279,7 @@ boolean Worm::pointIsOnWorm(Point point)
          } 
     }
 
-    return false;   
+    return false;
 }
 
 void Worm::setColor (unsigned int newColor)
