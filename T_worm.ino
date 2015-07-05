@@ -6,11 +6,12 @@ class Worm
         int          growCounter;
         int          growThreshold;
         int          lastDirection;
+        void         moveQueue(int start, int count);
+        void         offQueue(int start, int count);
         Point        queue[128u];
         int          queueLength;  
         int          x;
         int          y;
-        
         void         addPosition(Point point, boolean grow);
  
     public:
@@ -20,7 +21,6 @@ class Worm
         void continueMoving();
         Point currentPosition();
         void die();
-        void draw();
         boolean isAlive();
         void moved();
         void moveDown();
@@ -51,24 +51,13 @@ Worm::Worm(unsigned int newColor)
 
 void Worm::addPosition (Point point, boolean grow)
 {
-    
-    
-   // grow = false;
     if (!grow)
     {
          Point queueEnd = queue[0];
         _OFF(queueEnd.x, queueEnd.y);
         
-        for (int i = 0; i < queueLength - 1; ++i)
-        {
-            queue[i] = queue[i + 1];
-        }
-    
-       
-    
+        moveQueue(0, queueLength);
     }
-    
-    
     
     if (grow)
     {
@@ -82,11 +71,6 @@ void Worm::addPosition (Point point, boolean grow)
        
     Point queueStart = queue[queueLength - 1];
     _P(queueStart.x, queueStart.y, color);
-    
- 
-    //queue[queueLength] = point;
-
-    //++queueLength;
 }
 
 void Worm::changeColor ()
@@ -102,7 +86,6 @@ void Worm::continueMoving ()
 Point Worm::currentPosition()
 {
     return { x, y };
-    
 }
 
 void Worm::die()
@@ -113,43 +96,10 @@ void Worm::die()
         
         tone(2, NOTE_C4, 50); // TODO soundmanager
         
-        for (int ii = 0; ii < queueLength; ++ii)
-        {
-                            Point point = queue[ii];
-            _OFF(point.x, point.y);
-            //queue[ii] = 0;
-         
-        }
-        
+        offQueue(0, queueLength);      
         queueLength = 0;
     }
-    
 };
-
-void Worm::draw ()
-{
-    // turn of first
-    // rebuild array
-    // draw latest
-    
-    //clearMatrix();
-    
-
-    
-  //  removeLastQueueEntry();
-    
-  /*  for (int i = 0; i < queueLength; ++i)
-    {
-        Point currentPoint = queue[i];
-        
-       _P_GREEN(currentPoint.x, currentPoint.y);
-    }*/
- 
-    
-  //  
- 
-    
-}
 
 boolean Worm::isAlive()
 {
@@ -180,6 +130,23 @@ void Worm::moveDown()
 void Worm::moveLeft()
 {
     moveToDirection(DIRECTION_LEFT);
+}
+
+void Worm::moveQueue(int start, int count)
+{
+    for (int i = start; i < count; ++i)
+    {
+        queue[i] = queue[i + 1];
+    }
+}
+
+void Worm::offQueue(int start, int count)
+{
+    for (int i = start; i < count; ++i)
+    {
+        Point point = queue[i];
+        _OFF(point.x, point.y);
+    }
 }
 
 void Worm::moveRight()
@@ -298,31 +265,13 @@ void Worm::shrinkByPercentAmoutOfLength(int percent)
 {
     float factor = percent / 100.0;
     int pointsToRemove = factor * (float)queueLength;
-   
-    // dbgInt(percent);
-    // dbgInt(pointsToRemove);
-   
-    for (int i = 0; i < pointsToRemove; ++i)
-    {
-        Point point = queue[i];
-        _OFF(point.x, point.y);
-    }
+    
+    offQueue(0, pointsToRemove);
     
     for (int i = 0; i < pointsToRemove; ++i)
     {
-        
-      
-        // TODO move in method
-        for (int ii = 0; ii < queueLength - 1; ++ii)
-        {
-            queue[ii] = queue[ii + 1];
-            
-            
-        }
+        moveQueue (0, queueLength - 1);
         
         --queueLength;
     }
-    
-    
-    
 }
