@@ -19,9 +19,12 @@ ShotManager::ShotManager()
 
 void ShotManager::newShot(Point position, int direction)
 {
-    Shot shot = Shot(position, direction);
-    shots[shotCount] = shot;
-    ++shotCount;
+    if (shotCount < 23)
+    {
+        Shot shot = Shot(position, direction);
+        shots[shotCount] = shot;
+        ++shotCount;
+    }
 }
 
 void ShotManager::newShot(Worm &player)
