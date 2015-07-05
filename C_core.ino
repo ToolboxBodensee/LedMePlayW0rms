@@ -74,6 +74,11 @@ void _OFF (int x, int y)
     drawPixel(x, y, COLOR_BLACK);
 }
 
+void _OFF_RECT (int startX, int startY, int endX, int endY)
+{
+    matrix.fillRect(startX, startY, endX, endY, COLOR_BLACK);
+}
+
 void _P (int x, int y, unsigned int color)
 {
     drawPixel(x, y, color);
@@ -99,6 +104,12 @@ void _P_YELLOW (int x, int y)
     drawPixel(x, y, COLOR_YELLOW);
 }
 
+void _R (int startX, int startY, int endX, int endY, unsigned int color)
+{
+    drawRect(startX, startY, endX, endY, color);
+}
+
+
 void clearMatrix ()
 {
      matrix.fillScreen(COLOR_BLACK);  
@@ -112,6 +123,11 @@ void drawLine (int startX, int startY, int endX, int endY, unsigned int color)
 void drawPixel (int x, int y, unsigned int color)
 {
     matrix.drawPixel(x, y, color);
+}
+
+void drawRect (int startX, int startY, int endX, int endY, unsigned int color)
+{
+    matrix.fillRect(startX, startY, endX, endY, color);
 }
 
 unsigned int randomColor ()

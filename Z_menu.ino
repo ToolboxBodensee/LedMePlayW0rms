@@ -10,13 +10,18 @@ void menuLoop()
     
     unsigned long engineLoopStartPoint;
     
-    int  arrowPosition      = 1;
-    int  arrowThreshold     = 20;
-    int  arrowTickCount     = 0;
-    int  explosionCount     = 0;
-    int  explosionThreshold = 40;
-    int  playerCount        = 1;
-    bool redraw             = true;
+    int     arrowPosition      = 1;
+    int     arrowThreshold     = 20;
+    int     arrowTickCount     = 0;
+    boolean backFromGame       = false;
+    boolean buttonDownLocked   = false;
+    boolean buttonUpLocked     = false;
+    boolean explostionActive   = false;
+    int     explosionCount     = 0;
+    int     explosionThreshold = 40;
+    int     playerCount        = 1;
+    int     lastPlayerCount    = 1;
+    bool    redraw             = true;
     
     do
     {
@@ -33,7 +38,7 @@ void menuLoop()
                 arrowDown(14, 23 + 1, COLOR_BLACK);
             }
             
-            redraw = explosionManager.tick();
+            explostionActive = explosionManager.tick();
             
             ++arrowTickCount;
             ++explosionCount;
@@ -59,19 +64,31 @@ void menuLoop()
                 explosionManager.newExplosion({ rand() % 31, rand() % 31 }, 2 + (rand() % 6));
             }
             
-            if (buttonPlayer1DownPressed() && playerCount < 4)
+            if (buttonPlayer1DownPressed() && playerCount < 4 && !buttonDownLocked)
             {
                 ++playerCount;
-                redraw = true;
+                
+                buttonDownLocked = redraw = true;
             }
-            else if (buttonPlayer1UpPressed() && playerCount > 1)
+            else if (buttonPlayer1UpPressed() && playerCount > 1 && !buttonUpLocked)
             {
                 --playerCount;
-                redraw = true;
+                
+                buttonUpLocked = redraw = true;
             }
             else if (buttonPlayer1Fire1Pressed())
             {
-                redraw = gameLoop(playerCount);
+                backFromGame = gameLoop(playerCount);
+            }
+            
+            if (!buttonPlayer1UpPressed())
+            {
+                buttonUpLocked = false;
+            }
+            
+            if (!buttonPlayer1DownPressed())
+            {
+                buttonDownLocked = false;
             }
             
             if (playerCount < 1)
@@ -100,18 +117,27 @@ void menuLoop()
                 arrowDown(14, 23 + arrowPosition, COLOR_BLUE);
             }
             
-            if (redraw)
-            {    
+            if (backFromGame)
+            {
+                backFromGame = false;
+                
                 _C();
+                
+                redraw = true;   
+            }
+            
+            if (redraw || explostionActive)
+            {   
+                if (playerCount != lastPlayerCount)
+                {
+                    lastPlayerCount = playerCount;  
+                    
+                    _OFF_RECT(11, 12, 12, 8);
+                }
                 
                 matrix.setTextColor(matrix.Color333(3,0,0));
                 matrix.setCursor(11, 12);
                 matrix.println(outputString);
-                
-                while (buttonPlayer1DownPressed() || buttonPlayer1UpPressed())
-                {
-              
-                };
                 
                 redraw = false;
             }
