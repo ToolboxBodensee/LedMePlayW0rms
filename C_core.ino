@@ -150,6 +150,9 @@ unsigned int randomColor ()
 // Main loop
 void loop()
 {
+    mithotronicIntro();
+    _C();
+    
     do
     {
 
