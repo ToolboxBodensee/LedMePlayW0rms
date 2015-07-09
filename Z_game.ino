@@ -31,7 +31,7 @@ boolean gameLoop(int playerCount)
   
   player1.reset();
   player2.reset();
-
+    powerUpManager.reset();
 
   do
   {

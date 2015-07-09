@@ -12,6 +12,7 @@ class PowerUpManager
         void redraw();
         void removePowerUpAtIndex(int index);
         bool removePowerUpForPosition(Point point);
+        void reset();
         void spawnPowerUp(Worm &player1, Worm &player2);
         void tick(Worm &player1, Worm &player2);
         void tryPlayer(Worm &player);     
@@ -20,10 +21,7 @@ class PowerUpManager
 
 PowerUpManager::PowerUpManager()
 {
-     powerUpCount  = 0;
-     powerUpLimit  = 24;
-     tickCounter   = 0;
-     tickThreshold = 20;
+    reset();
 }
 
 void PowerUpManager::redraw()
@@ -60,6 +58,14 @@ void PowerUpManager::removePowerUpAtIndex(int index)
     }
     
     --powerUpCount;
+}
+
+void PowerUpManager::reset()
+{
+     powerUpCount  = 0;
+     powerUpLimit  = 24;
+     tickCounter   = 0;
+     tickThreshold = 20;
 }
 
 void PowerUpManager::spawnPowerUp (Worm &player1, Worm &player2)
