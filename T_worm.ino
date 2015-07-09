@@ -7,6 +7,7 @@ class Worm
         int          growCounter;
         int          growThreshold;
         int          lastDirection;
+        int          nextDirection;
         void         moveQueue(int start, int count);
         void         offQueue(int start, int count);
         Point        queue[128u];
@@ -246,6 +247,8 @@ void Worm::moveToDirection(int newDirection)
     {
         // TODO: wenn auskommentiert = stop
         nextDirection = lastDirection;
+        
+        moveToDirection(nextDirection);
     }
 }
 
