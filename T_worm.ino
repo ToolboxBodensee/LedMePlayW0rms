@@ -154,12 +154,12 @@ void Worm::moved()
 
 void Worm::moveDown()
 {
-    moveToDirection(DIRECTION_DOWN);
+    lastDirection = DIRECTION_DOWN;
 }
 
 void Worm::moveLeft()
 {
-    moveToDirection(DIRECTION_LEFT);
+    lastDirection = DIRECTION_LEFT;
 }
 
 void Worm::moveQueue(int start, int count)
@@ -181,7 +181,7 @@ void Worm::offQueue(int start, int count)
 
 void Worm::moveRight()
 {
-    moveToDirection(DIRECTION_RIGHT);
+    lastDirection = DIRECTION_RIGHT;
 }
 
 void Worm::moveToDirection(int newDirection)
@@ -242,15 +242,11 @@ void Worm::moveToDirection(int newDirection)
             moved();
         }
     }
-    else
-    {
-        continueMoving();   
-    }
 }
 
 void Worm::moveUp()
 {
-    moveToDirection(DIRECTION_UP);
+    lastDirection = DIRECTION_UP;
 }
 
 boolean Worm::pointIsOnWorm(Point point)

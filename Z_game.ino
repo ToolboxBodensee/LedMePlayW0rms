@@ -55,18 +55,7 @@ boolean gameLoop(int playerCount)
       
       boolean explosionActive = explosionManager.tick();
 
-
-      if (tickCounter >= tickThreshold)
-      {
-        tickCounter = 0;
-
-        player1.tick();
-        player2.tick();
-
-
-
-        //*
-        if (player1.isAlive())
+    if (player1.isAlive())
         {
             if (buttonPlayer1RightPressed())
             {
@@ -83,10 +72,6 @@ boolean gameLoop(int playerCount)
             else if (buttonPlayer1UpPressed())
             {
               player1.moveUp();
-            }
-            else
-            {
-              player1.continueMoving();
             }
     
             if (buttonPlayer1Fire1Pressed())
@@ -116,16 +101,30 @@ boolean gameLoop(int playerCount)
             {
               player2.moveUp();
             }
-            else
-            {
-              player2.continueMoving();
-            }
     
             if (buttonPlayer2Fire1Pressed())
             {
               shotManager.newShot(player2);
             }
         }
+
+      if (tickCounter >= tickThreshold)
+      {
+        tickCounter = 0;
+
+        player1.tick();
+        player2.tick();
+
+      if (player1.isAlive())
+        {
+            player1.continueMoving();
+        }
+        
+        if (player2.isAlive())
+        {
+            player2.continueMoving();
+        }
+        
         
         powerUpManager.tick(player1, player2);
         
@@ -176,53 +175,6 @@ boolean gameLoop(int playerCount)
     {
         return scoreLoop();
     }
-
-
-
-
-      /*
-      matrix.drawPixel(x, y, matrix.Color333(0, 0, 0));
-
-
-
-        if (buttonPlayer1Fire1Pressed()) c++;
-
-
-
-            if (x > 31) x = 0;
-      if (y > 31) y = 0;
-      if (x < 0) x = 31;
-      if (y < 0) y = 31;
-      if (c > 255)
-      {
-          c = 0;
-          if (r == 255)
-          {
-            r = 0;
-            b = 255;
-          }
-          else if (b == 255)
-          {
-            b = 0;
-            g = 255;
-          }
-          else if (g == 255)
-          {
-            b = 0;
-            r = 255;
-          }
-      }
-
-
-
-            matrix.drawPixel(x, y, matrix.Color333(r, g, b));
-
-
-      */
-      //_P_RED(10, 10);
-
-      //_L(12, 12, 50, 50, COLOR_RED);
-
 
 
     }
