@@ -61,7 +61,7 @@ void menuLoop()
             {
                 explosionCount     = 0;
                 explosionThreshold = 25 + (rand() % 60);
-                explosionManager.newExplosion({ rand() % 31, rand() % 31 }, 2 + (rand() % 6));
+                explosionManager.newExplosion({ rand() % (FIELD_WIDTH - 1), rand() % (FIELD_HEIGHT - 1) }, 2 + (rand() % 6));
             }
             
             if (buttonPlayer1DownPressed() && playerCount < 4 && !buttonDownLocked)
