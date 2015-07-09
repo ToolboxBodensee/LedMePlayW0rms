@@ -41,7 +41,7 @@ void Shot::goToNextPosition()
 
 boolean Shot::isOutOfBounds()
 {
-    return position.x < 0 || position.x > 31 || position.y < 0 || position.y > 31;
+    return position.x < 0 || position.x > (FIELD_WIDTH - 1) || position.y < 0 || position.y > (FIELD_HEIGHT - 1);
 };
 
 void Shot::move()

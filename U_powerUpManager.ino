@@ -76,8 +76,8 @@ void PowerUpManager::spawnPowerUp (Worm &player1, Worm &player2)
             
         do
         {
-            int x = rand() % 31;
-            int y = rand() % 31;
+            int x = rand() % (FIELD_WIDTH - 1);
+            int y = rand() % (FIELD_HEIGHT - 1);
             point = { x, y };
             
             dbg(F("Powerup position conflict"));

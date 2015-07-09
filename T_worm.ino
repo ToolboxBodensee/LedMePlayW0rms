@@ -208,9 +208,9 @@ void Worm::moveToDirection(int newDirection)
         {
             ++x;
                
-            if (x > 31)
+            if (x > (FIELD_WIDTH - 1))
             {
-                x = 31;
+                x = (FIELD_WIDTH - 1);
                 die();
             }   
         }
@@ -228,9 +228,9 @@ void Worm::moveToDirection(int newDirection)
         {
             ++y;
                
-            if (y > 31)
+            if (y > (FIELD_HEIGHT - 1))
             {
-                y = 31;
+                y = (FIELD_HEIGHT - 1);
                 die();
             }  
         }
@@ -286,8 +286,8 @@ void Worm::reset()
     growCounter   = 0;
     growThreshold = 10;
     queueLength   = 1;
-    x = 3 + (rand() % 26);
-    y = 3 + (rand() % 26);
+    x = 3 + (rand() % (FIELD_WIDTH - 6));
+    y = 3 + (rand() % (FIELD_HEIGHT - 6));
     queue[0] = { x, y };
 }
 

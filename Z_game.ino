@@ -126,7 +126,7 @@ boolean gameLoop(int playerCount)
               shotManager.newShot(player2);
             }
         }
-
+        
         powerUpManager.tick(player1, player2);
         
 
