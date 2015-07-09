@@ -98,7 +98,7 @@ void Worm::changeColor ()
 
 void Worm::continueMoving ()
 {
-    moveToDirection(lastDirection);
+    moveToDirection(nextDirection);
 }
 
 Point Worm::currentPosition()
@@ -154,12 +154,12 @@ void Worm::moved()
 
 void Worm::moveDown()
 {
-    lastDirection = DIRECTION_DOWN;
+    nextDirection = DIRECTION_DOWN;
 }
 
 void Worm::moveLeft()
 {
-    lastDirection = DIRECTION_LEFT;
+    nextDirection = DIRECTION_LEFT;
 }
 
 void Worm::moveQueue(int start, int count)
@@ -181,7 +181,7 @@ void Worm::offQueue(int start, int count)
 
 void Worm::moveRight()
 {
-    lastDirection = DIRECTION_RIGHT;
+    nextDirection = DIRECTION_RIGHT;
 }
 
 void Worm::moveToDirection(int newDirection)
@@ -242,11 +242,16 @@ void Worm::moveToDirection(int newDirection)
             moved();
         }
     }
+    else
+    {
+        // TODO: wenn auskommentiert = stop
+        nextDirection = lastDirection;
+    }
 }
 
 void Worm::moveUp()
 {
-    lastDirection = DIRECTION_UP;
+    nextDirection = DIRECTION_UP;
 }
 
 boolean Worm::pointIsOnWorm(Point point)
