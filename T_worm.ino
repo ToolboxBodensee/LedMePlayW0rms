@@ -10,6 +10,7 @@ class Worm
         int          nextDirection;
         void         moveQueue(int start, int count);
         void         offQueue(int start, int count);
+        int          points;
         Point        queue[128u];
         int          queueLength;  
         int          shotCooldown;
@@ -26,6 +27,7 @@ class Worm
         Point currentPosition();
         void die();
         int getDirection();
+        int  getPoints();
         void hitByShot();
         boolean isAlive();
         void moved();
@@ -125,9 +127,16 @@ int Worm::getDirection()
     return lastDirection;
 }
 
+int Worm::getPoints()
+{
+    return points;
+}
+
 void Worm::hitByShot()
 {
     forceGrow = true;
+    
+    points -= 10;
   
     // TODO sound=   
 }
@@ -140,6 +149,7 @@ boolean Worm::isAlive()
 void Worm::moved()
 {
     ++growCounter;
+    ++points;
     
     bool grow = false;
     
@@ -298,6 +308,7 @@ void Worm::reset()
     growCounter   = 0;
     growThreshold = 10;
     queueLength   = 1;
+    points        = 0;
     x = 3 + (rand() % (FIELD_WIDTH - 6));
     y = 3 + (rand() % (FIELD_HEIGHT - 6));
     queue[0] = { x, y };
@@ -312,6 +323,8 @@ void Worm::shrinkByPercentAmoutOfLength(int percent)
 {
     float factor = percent / 100.0;
     int pointsToRemove = factor * (float)queueLength;
+    
+    points += pointsToRemove;
     
     offQueue(0, pointsToRemove);
     
@@ -334,6 +347,8 @@ void Worm::redraw()
 
 void Worm::shot()
 {
+    ++points;
+    
     shotCooldown = 5;
 };
 

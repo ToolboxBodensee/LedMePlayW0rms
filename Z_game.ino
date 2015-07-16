@@ -173,7 +173,7 @@ boolean gameLoop(int playerCount)
 
     if (!stillPlayerAlive())
     {
-        return scoreLoop();
+        return scoreLoop(player1.getPoints(), player2.getPoints());
     }
 
 
