@@ -155,11 +155,15 @@ void Worm::moved()
 
 void Worm::moveDown()
 {
+    if (nextDirection == DIRECTION_DOWN) return;
+    
     nextDirection = DIRECTION_DOWN;
 }
 
 void Worm::moveLeft()
 {
+    if (nextDirection == DIRECTION_LEFT) return;
+    
     nextDirection = DIRECTION_LEFT;
 }
 
@@ -182,6 +186,8 @@ void Worm::offQueue(int start, int count)
 
 void Worm::moveRight()
 {
+    if (nextDirection == DIRECTION_RIGHT) return;
+    
     nextDirection = DIRECTION_RIGHT;
 }
 
@@ -254,6 +260,8 @@ void Worm::moveToDirection(int newDirection)
 
 void Worm::moveUp()
 {
+    if (nextDirection == DIRECTION_UP) return;
+    
     nextDirection = DIRECTION_UP;
 }
 
