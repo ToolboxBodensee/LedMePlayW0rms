@@ -78,7 +78,7 @@ void Worm::addPosition (Point point, boolean grow)
     {
         queueLength++;
         
-        dbg("Growing");
+        // dbg("Growing");
     }
     
     queue[queueLength - 1] = point;

@@ -80,7 +80,7 @@ void PowerUpManager::spawnPowerUp (Worm &player1, Worm &player2)
             int y = rand() % (FIELD_HEIGHT - 1);
             point = { x, y };
             
-            dbg(F("Powerup position conflict"));
+            // dbg(F("Powerup position conflict"));
         }
         while (player1.pointIsOnWorm(point) || player2.pointIsOnWorm(point));
         
@@ -118,7 +118,7 @@ void PowerUpManager::tryPlayer (Worm &player)
         {
             tone(2, NOTE_C4, 50); // TODO soundmanager
             
-            dbg(F("Powerup collected"));
+            // dbg(F("Powerup collected"));
             
             int shrinkByPercent = 20 + (rand() % 10);
             
