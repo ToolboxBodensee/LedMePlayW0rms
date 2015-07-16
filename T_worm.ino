@@ -19,33 +19,31 @@ class Worm
         void         addPosition(Point point, boolean grow);
  
     public:
-        Worm();
-        Worm(unsigned int newColor);
-        boolean canShoot();
-        void changeColor();
-        void continueMoving();
-        Point currentPosition();
-        void die();
-        int getDirection();
-        int  getPoints();
-        void hitByShot();
-        boolean isAlive();
-        void moved();
-        void moveDown();
-        void moveLeft();
-        void moveRight();
-        void moveToDirection(int newDirection);
-        void moveUp();
-        boolean pointIsOnWorm(Point point);
-        boolean pointIsOnWorm(Point point, boolean skipHead);
-        void reset();
-        void setColor(unsigned int newColor);
-        void shrinkByPercentAmoutOfLength(int percent);
-        void shot();
-        void tick();
-        void redraw();
-     
-
+                    Worm();
+                    Worm(unsigned int newColor);
+        boolean     canShoot();
+        void        changeColor();
+        void        continueMoving();
+        Point       currentPosition();
+        void        die();
+        int         getDirection();
+        int         getPoints();
+        void        hitByShot();
+        boolean     isAlive();
+        void        moved();
+        void        moveDown();
+        void        moveLeft();
+        void        moveRight();
+        void        moveToDirection(int newDirection);
+        void        moveUp();
+        boolean     pointIsOnWorm(Point point);
+        boolean     pointIsOnWorm(Point point, boolean skipHead);
+        void        reset();
+        void        setColor(unsigned int newColor);
+        void        shrinkByPercentAmoutOfLength(int percent);
+        void        shot();
+        void        tick();
+        void        redraw();
 };
 
 Worm::Worm()
@@ -309,9 +307,9 @@ void Worm::reset()
     growThreshold = 10;
     queueLength   = 1;
     points        = 0;
-    x = 3 + (rand() % (FIELD_WIDTH - 6));
-    y = 3 + (rand() % (FIELD_HEIGHT - 6));
-    queue[0] = { x, y };
+    x             = 3 + (rand() % (FIELD_WIDTH - 6));
+    y             = 3 + (rand() % (FIELD_HEIGHT - 6));
+    queue[0]      = { x, y };
 }
 
 void Worm::setColor (unsigned int newColor)

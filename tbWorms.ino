@@ -9,5 +9,4 @@
 
 // TODO: Frontalcrash buggt
 // TODO: alles auf den Point-Struct refactoren?
-// TODO: Spielfeld-größe als define
 // TODO: Intro
