@@ -13,8 +13,8 @@ class PowerUpManager
         void removePowerUpAtIndex(int index);
         bool removePowerUpForPosition(Point point);
         void reset();
-        void spawnPowerUp(Worm &player1, Worm &player2);
-        void tick(Worm &player1, Worm &player2);
+        void spawnPowerUp(Worm &player1, Worm &player2, Worm &player3);
+        void tick(Worm &player1, Worm &player2, Worm &player3);
         void tryPlayer(Worm &player);     
 
 };
@@ -68,7 +68,7 @@ void PowerUpManager::reset()
      tickThreshold = 20;
 }
 
-void PowerUpManager::spawnPowerUp (Worm &player1, Worm &player2)
+void PowerUpManager::spawnPowerUp (Worm &player1, Worm &player2, Worm &player3)
 {
     if (powerUpCount < powerUpLimit)
     {
@@ -82,7 +82,7 @@ void PowerUpManager::spawnPowerUp (Worm &player1, Worm &player2)
             
             // dbg(F("Powerup position conflict"));
         }
-        while (player1.pointIsOnWorm(point) || player2.pointIsOnWorm(point));
+        while (player1.pointIsOnWorm(point) || player2.pointIsOnWorm(point) || player3.pointIsOnWorm(point));
         
         positions[powerUpCount] = point;
         ++powerUpCount;
@@ -91,7 +91,7 @@ void PowerUpManager::spawnPowerUp (Worm &player1, Worm &player2)
     }
 }
 
-void PowerUpManager::tick(Worm &player1, Worm &player2)
+void PowerUpManager::tick(Worm &player1, Worm &player2, Worm &player3)
 {
     ++tickCounter;
     
@@ -99,11 +99,12 @@ void PowerUpManager::tick(Worm &player1, Worm &player2)
     {
         tickCounter = 0;
         
-        spawnPowerUp(player1, player2);
+        spawnPowerUp(player1, player2, player3);
     }
     
     tryPlayer(player1);
     tryPlayer(player2);
+    tryPlayer(player3);
 }
 
 void PowerUpManager::tryPlayer (Worm &player)

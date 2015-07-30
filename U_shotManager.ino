@@ -9,7 +9,7 @@ class ShotManager
         void newShot(Worm &player);
         ShotManager(); 
         void removeShot(Shot &shot, int position); 
-        void tick(Worm &player1, Worm &player2, PowerUpManager &powerUpManager);
+        void tick(Worm &player1, Worm &player2, Worm &player3, PowerUpManager &powerUpManager);
 
 };
 
@@ -53,7 +53,7 @@ void ShotManager::removeShot(Shot &shot, int position)
     --shotCount;
 }
 
-void ShotManager::tick(Worm &player1, Worm &player2, PowerUpManager &powerUpManager)
+void ShotManager::tick(Worm &player1, Worm &player2, Worm &player3, PowerUpManager &powerUpManager)
 {
     for (int i = 0; i < shotCount; ++i)
     {
@@ -76,6 +76,12 @@ void ShotManager::tick(Worm &player1, Worm &player2, PowerUpManager &powerUpMana
         
             hit = playerHit = true;
         }
+        else if (player3.pointIsOnWorm(shotPosition))
+        {
+            player3.hitByShot();
+        
+            hit = playerHit = true;
+        }
         
         if (!hit)
         {
@@ -91,7 +97,8 @@ void ShotManager::tick(Worm &player1, Worm &player2, PowerUpManager &powerUpMana
             if (playerHit)
             {
                 player1.redraw();
-                player2.redraw();   
+                player2.redraw(); 
+                player3.redraw();   
             }
         }
         else if (shot.isOutOfBounds())

@@ -7,7 +7,9 @@
 
 Worm player1 = Worm(COLOR_RED);
 
-Worm player2 = Worm(COLOR_GREEN);
+Worm player2 = Worm(COLOR_BLUE);
+
+Worm player3 = Worm(COLOR_GREEN);
 
 PowerUpManager powerUpManager = PowerUpManager();
 
@@ -31,6 +33,7 @@ boolean gameLoop(int playerCount)
   
   player1.reset();
   player2.reset();
+ player3.reset();
     powerUpManager.reset();
 
   do
@@ -107,6 +110,34 @@ boolean gameLoop(int playerCount)
               shotManager.newShot(player2);
             }
         }
+        
+  
+if (player3.isAlive())
+        {
+            if (buttonPlayer3RightPressed())
+            {
+              player3.moveRight();
+            }
+            else if (buttonPlayer3LeftPressed())
+            {
+              player3.moveLeft();
+            }
+            else if (buttonPlayer3DownPressed())
+            {
+              player3.moveDown();
+            }
+            else if (buttonPlayer3UpPressed())
+            {
+              player3.moveUp();
+            }
+    
+            if (buttonPlayer3Fire1Pressed())
+            {
+              shotManager.newShot(player3);
+            }
+        }
+     
+     
 
       if (tickCounter >= tickThreshold)
       {
@@ -114,6 +145,7 @@ boolean gameLoop(int playerCount)
 
         player1.tick();
         player2.tick();
+        player3.tick();
 
       if (player1.isAlive())
         {
@@ -125,26 +157,54 @@ boolean gameLoop(int playerCount)
             player2.continueMoving();
         }
         
+        if (player3.isAlive())
+        {
+            player3.continueMoving();
+        }
         
-        powerUpManager.tick(player1, player2);
+        
+        powerUpManager.tick(player1, player2, player3);
         
 
-     if (player2.pointIsOnWorm(player1.currentPosition()))
+     if (player1.pointIsOnWorm(player1.currentPosition(), true))
     {
         player1.die();
     }
-    else if (player1.pointIsOnWorm(player1.currentPosition(), true))
+    else if (player2.pointIsOnWorm(player1.currentPosition()))
+    {
+        player1.die();
+    }
+    else if (player3.pointIsOnWorm(player1.currentPosition()))
     {
         player1.die();
     }
     
-    if (player1.pointIsOnWorm(player2.currentPosition()))
+    if (player2.pointIsOnWorm(player2.currentPosition(), true))
     {
         player2.die();
     }
-    else if (player2.pointIsOnWorm(player2.currentPosition(), true))
+    else if (player3.pointIsOnWorm(player2.currentPosition()))
     {
         player2.die();
+    }
+    else if (player1.pointIsOnWorm(player2.currentPosition()))
+    {
+        player2.die();
+    }
+    
+    
+    
+    if (player3.pointIsOnWorm(player3.currentPosition(), true))
+    {
+        player3.die();
+    }
+    else if (player1.pointIsOnWorm(player3.currentPosition()))
+    {
+        player3.die();
+    }
+    else if (player2.pointIsOnWorm(player3.currentPosition()))
+    {
+        player3.die();
     }
 
 
@@ -154,7 +214,7 @@ boolean gameLoop(int playerCount)
       {
         tickCounterHalf = 0;
         
-        shotManager.tick(player1, player2, powerUpManager);
+        shotManager.tick(player1, player2, player3, powerUpManager);
         
       }
       //*/
@@ -164,16 +224,17 @@ boolean gameLoop(int playerCount)
       {
           player1.redraw();
           player2.redraw();
+          player3.redraw();
           powerUpManager.redraw();
       }
 
-      _P_RED(1, 1);
+  //    _P_RED(1, 1);
 
 
 
     if (!stillPlayerAlive())
     {
-        return scoreLoop(player1.getPoints(), player2.getPoints());
+        return scoreLoop(player1.getPoints(), player2.getPoints(), player3.getPoints());
     }
 
 
@@ -187,6 +248,7 @@ boolean stillPlayerAlive ()
 {
     if (player1.isAlive()) return true;
     if (player2.isAlive()) return true;
+    if (player3.isAlive()) return true;
     
     return false;
 };

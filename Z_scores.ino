@@ -4,7 +4,7 @@
 // by Thomas Kekeisen
 //
 
-boolean scoreLoop(int player1Points, int player2Points)
+boolean scoreLoop(int player1Points, int player2Points, int player3Points)
 {
     _C();
     
@@ -15,6 +15,9 @@ boolean scoreLoop(int player1Points, int player2Points)
     
     char player2PointsString[15];
     sprintf(player2PointsString, "%d", player2Points);
+    
+    char player3PointsString[15];
+    sprintf(player3PointsString, "%d", player3Points);
     
     do
     {
@@ -38,6 +41,12 @@ boolean scoreLoop(int player1Points, int player2Points)
             //matrix.println("P2");
             //matrix.setCursor(16, 20);
             matrix.println(player2PointsString);
+       
+            matrix.setTextColor(COLOR_GREEN);
+            matrix.setCursor(2, 20);
+            //matrix.println("P2");
+            //matrix.setCursor(16, 20);
+            matrix.println(player3PointsString);
         }
         
         synchronizeFrames(engineLoopStartPoint);
