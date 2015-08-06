@@ -19,11 +19,13 @@ boolean scoreLoop(int player1Points, int player2Points, int player3Points)
     char player3PointsString[15];
     sprintf(player3PointsString, "%d", player3Points);
     
+    unsigned long screenLoadTime = millis();
+    
     do
     {
         engineLoopStartPoint = millis();
         {
-            if (buttonPlayer1Fire1Pressed())
+            if (buttonPlayer1Fire1Pressed() && screenLoadTime < millis() - 5000)
             {
                 buttonPlayer1Fire1Wait();
                 
