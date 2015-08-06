@@ -10,5 +10,3 @@
 // TODO: Frontalcrash buggt
 // TODO: alles auf den Point-Struct refactoren?
 // TODO: Intro
-// TODO: Countdown am start mit sichtbaren würmern
-// TODO: Endscreen gesperrt für 2 sekunden

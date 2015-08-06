@@ -31,9 +31,11 @@ boolean gameLoop(int playerCount)
   int  speedUpCounter   = 0;
   int  speedUpThreshold = 500;
   
+  bool countDownShown = false;
+  
   player1.reset();
   player2.reset();
- player3.reset();
+  player3.reset();
     powerUpManager.reset();
 
   do
@@ -230,6 +232,27 @@ if (player3.isAlive())
 
   //    _P_RED(1, 1);
 
+
+    if (!countDownShown)
+    {
+        countDownShown = true;
+        
+        player1.redraw();
+        player2.redraw();
+        player3.redraw();
+        
+        tone(audio, NOTE_C5, 400);
+        delay(800);
+        
+        tone(audio, NOTE_C5, 400);
+        delay(800);
+        
+        tone(audio, NOTE_G5, 800);
+        delay(1200);
+        
+        
+        
+    }
 
 
     if (!stillPlayerAlive())
