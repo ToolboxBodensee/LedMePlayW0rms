@@ -29,7 +29,7 @@ void PowerUpManager::redraw()
     for (int i = 0; i < powerUpCount; ++i)
     {
         Point powerUpPoint = positions[i];
-        _P_BLUE(powerUpPoint.x, powerUpPoint.y); 
+        _P(powerUpPoint.x, powerUpPoint.y, COLOR_WHITE); 
     }
 };
 
@@ -87,7 +87,7 @@ void PowerUpManager::spawnPowerUp (Worm &player1, Worm &player2, Worm &player3)
         positions[powerUpCount] = point;
         ++powerUpCount;
 
-        _P_BLUE(point.x, point.y);
+        _P(point.x, point.y, COLOR_WHITE);
     }
 }
 
