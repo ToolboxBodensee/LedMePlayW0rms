@@ -19,11 +19,14 @@ int buttonR2    = 37;
 int buttonFire2 = 39;
 
 // Joystick 3
-int buttonU3    = 40;
-int buttonD3    = 42;
-int buttonL3    = 44;
-int buttonR3    = 46;
-int buttonFire3 = 48;
+
+
+// Joystick 4
+int buttonU3    = 41;
+int buttonD3    = 43;
+int buttonL3    = 45;
+int buttonR3    = 47;
+int buttonFire3 = 49;
 
 // Other buttons
 int buttonReset = 42;
