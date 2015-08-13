@@ -231,6 +231,11 @@ if (player3.isAlive())
       }
 
   //    _P_RED(1, 1);
+  
+          player1.dieIfPossible();
+          player2.dieIfPossible();
+          player3.dieIfPossible();
+  
 
 
     if (!countDownShown)
@@ -239,7 +244,7 @@ if (player3.isAlive())
         
         player1.redraw();
         player2.redraw();
-        player3.redraw();
+         player3.redraw();
         
         tone(audio, NOTE_C5, 400);
         delay(800);

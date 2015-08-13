@@ -14,6 +14,7 @@ class Worm
         Point        queue[128u];
         int          queueLength;  
         int          shotCooldown;
+        boolean      willDie;
         int          x;
         int          y;
         void         addPosition(Point point, boolean grow);
@@ -26,6 +27,7 @@ class Worm
         void        continueMoving();
         Point       currentPosition();
         void        die();
+        void        dieIfPossible();
         int         getDirection();
         int         getPoints();
         void        hitByShot();
@@ -109,15 +111,23 @@ Point Worm::currentPosition()
 
 void Worm::die()
 {
-    if (alive)
+    if (!willDie)
     {
-        alive = false;
+        willDie = true;
         
         tone(2, NOTE_C4, 50); // TODO soundmanager
-        
-        offQueue(0, queueLength);      
-        queueLength = 0;
     }
+};
+
+void Worm::dieIfPossible()
+{
+    if (willDie)
+    {
+        offQueue(0, queueLength);      
+        queueLength = 0; 
+        
+        alive = false;
+    } 
 };
 
 int Worm::getDirection()
@@ -141,7 +151,7 @@ void Worm::hitByShot()
 
 boolean Worm::isAlive()
 {
-     return alive;
+     return !willDie || alive;
 }
 
 void Worm::moved()
@@ -252,7 +262,7 @@ void Worm::moveToDirection(int newDirection)
 
         lastDirection = newDirection;
         
-        if (alive)
+        if (isAlive())
         {
             moved();
         }
@@ -310,6 +320,7 @@ void Worm::reset()
     x             = 3 + (rand() % (FIELD_WIDTH - 6));
     y             = 3 + (rand() % (FIELD_HEIGHT - 6));
     queue[0]      = { x, y };
+    willDie       = false;
 }
 
 void Worm::setColor (unsigned int newColor)
