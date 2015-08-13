@@ -153,6 +153,8 @@ void loop()
 {
     mithotronicIntro();
     _C();
+    toolboxIntro();
+    _C();
     
     do
     {
