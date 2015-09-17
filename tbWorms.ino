@@ -7,5 +7,6 @@
 #define FIELD_WIDTH  32
 #define FIELD_HEIGHT 32
 #define WALLS_ENABLED false
+#define WALLS_ENABLED_SHOTS false
 
 // TODO: alles auf den Point-Struct refactoren?

@@ -23,25 +23,62 @@ void Shot::goToNextPosition()
 {
     if (direction == DIRECTION_UP)
     {
-        --position.y;
+        --position.y;  
+        
+        if (!WALLS_ENABLED_SHOTS)
+        {
+            if (position.y < 0)
+            {
+                position.y = (FIELD_HEIGHT - 1);
+            }
+        }
     }
     else if (direction == DIRECTION_DOWN)
     {
          ++position.y;
+        
+        if (!WALLS_ENABLED_SHOTS)
+        {
+            if (position.y > (FIELD_HEIGHT - 1))
+            {
+                position.y = 0;
+            }
+        }
     }
     else if (direction == DIRECTION_LEFT)
     {
         --position.x;
+        
+        if (!WALLS_ENABLED_SHOTS)
+        {
+            if (position.x < 0)
+            {
+                position.x = (FIELD_WIDTH - 1);
+            }
+        }
     }
     else if (direction == DIRECTION_RIGHT)
     {
         ++position.x;
+        
+        if (!WALLS_ENABLED_SHOTS)
+        {
+            if (position.x > (FIELD_WIDTH - 1))
+            {
+                position.x = 0;
+            }
+        }
     }
 }
 
 boolean Shot::isOutOfBounds()
 {
-    return position.x < 0 || position.x > (FIELD_WIDTH - 1) || position.y < 0 || position.y > (FIELD_HEIGHT - 1);
+    if (WALLS_ENABLED_SHOTS)
+    {
+        return position.x < 0 || position.x > (FIELD_WIDTH - 1) || position.y < 0 || position.y > (FIELD_HEIGHT - 1);
+    }
+    
+    return false;
 };
 
 void Shot::move()
