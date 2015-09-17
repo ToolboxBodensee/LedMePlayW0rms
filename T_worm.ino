@@ -226,7 +226,15 @@ void Worm::moveToDirection(int newDirection)
             if (y < 0)
             {
                 y = 0;
-                die();
+                
+                if (WALLS_ENABLED)
+                {
+                    die();
+                }
+                else
+                {
+                    y = (FIELD_HEIGHT - 1);
+                }
             } 
         }
         else if (newDirection == DIRECTION_RIGHT)
@@ -236,7 +244,15 @@ void Worm::moveToDirection(int newDirection)
             if (x > (FIELD_WIDTH - 1))
             {
                 x = (FIELD_WIDTH - 1);
-                die();
+             
+                if (WALLS_ENABLED)
+                {
+                    die();
+                }
+                else
+                {
+                    x = 0;
+                }
             }   
         }
         else if (newDirection == DIRECTION_LEFT)
@@ -246,7 +262,15 @@ void Worm::moveToDirection(int newDirection)
             if (x < 0)
             {
                 x = 0;
-                die();
+                
+                if (WALLS_ENABLED)
+                {
+                    die();
+                }
+                else
+                {
+                    x = (FIELD_WIDTH - 1);
+                }
             }    
         }
         else if (newDirection == DIRECTION_DOWN)
@@ -256,7 +280,15 @@ void Worm::moveToDirection(int newDirection)
             if (y > (FIELD_HEIGHT - 1))
             {
                 y = (FIELD_HEIGHT - 1);
-                die();
+
+                if (WALLS_ENABLED)
+                {
+                    die();
+                }
+                else
+                {
+                    y = 0;
+                }
             }  
         }
 
