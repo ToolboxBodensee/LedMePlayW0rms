@@ -32,7 +32,7 @@ ShotManager::ShotManager()
 void ShotManager::newShot(Point position, int direction)
 {
     if (shotCount < 23)
-    {  
+    {
         Shot shot = Shot(position, direction);
         shots[shotCount] = shot;
         ++shotCount;
